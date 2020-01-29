@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">RetroHub</string>
     <string name="action_settings">Settings</string>
+    <string name="new_retro_button">Crear nueva retrospectiva</string>
+    <string name="commingSoon">Próximamente</string>
+    <string name="empty_message">¡Ups! Parece que aún no tienes nada.</string>
 </resources>
