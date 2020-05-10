@@ -26,11 +26,4 @@
 
     <include layout="@layout/content_main"/>
 
-    <include layout="@layout/layout_button_new_retrospective"
-        android:id="@+id/button_new_retro"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_new_height"
-        android:layout_margin="@dimen/s_margin"
-        android:layout_gravity="bottom|end" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
