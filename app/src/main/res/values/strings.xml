@@ -12,4 +12,5 @@
     <string name="password_label_edit_text">Contraseña</string>
     <string name="register_link">¿No tienes cuenta? Regístrate.</string>
     <string name="login_action">Entrar</string>
+    <string name="login_error_message">Usuario y/o contraseña incorrectos.</string>
 </resources>

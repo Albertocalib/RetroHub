@@ -8,9 +8,14 @@ import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.retrohub.view.LoginFragment
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,14 +26,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //val content = FrameLayout(this)
-        setContentView(R.layout.fragment_login_view)
+        setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        if (savedInstanceState == null) {
-            val ft = supportFragmentManager.beginTransaction()
-            ft.add(R.id.fragment_container_login, LoginFragment()).commit()
-        }
+        toolbar.setupWithNavController(findNavController(R.id.nav_host_fragment))
     }
 
 
@@ -48,4 +48,8 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    abstract class RetroHubFragment(@LayoutRes layoutResId: Int): Fragment(layoutResId)
+
+
 }

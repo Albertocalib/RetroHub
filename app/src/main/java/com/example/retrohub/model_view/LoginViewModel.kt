@@ -7,9 +7,6 @@ import androidx.lifecycle.ViewModel
 
 class LoginViewModel: ViewModel() {
 
-    private var name =  ""
-    private var password = ""
-
     private val mutableState = MutableLiveData<LoginState>()
 
     val state : LiveData<LoginState>
@@ -17,17 +14,12 @@ class LoginViewModel: ViewModel() {
 
     fun getLogin(n: String, p: String){
         if(n.isNotEmpty() && p.isNotEmpty()){
-            name = n
-            password = p
+            //TODO: make request to back
             mutableState.value = LoginState.SUCCESS
         }else{
             //TODO: process error
             mutableState.value = LoginState.ERROR
         }
-    }
-
-    fun getData(){
-
     }
 }
  enum class LoginState{
