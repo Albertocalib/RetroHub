@@ -4,10 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.model_view.LoginViewModel
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.service.UserService
@@ -26,9 +28,41 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    val viewModule = module {
-        factory { LoginFragment() }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        startKoin()
+        setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
+        toolbar.setupWithNavController(findNavController(R.id.nav_host_fragment))
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        return when (item.itemId) {
+            R.id.action_settings -> true
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun startKoin()  = startKoin {
+            androidContext(this@MainActivity)
+            modules(listOf(retrofitModule, serviceModule, repositoryModule, vmModule/*, viewModule*/))
+    }
+
+
+
+ /*   val viewModule = module {
+        factory { LoginFragment() }
+    }*/
 
     val repositoryModule = module {
         single { UserRepository(get()) }
@@ -71,38 +105,12 @@ class MainActivity : AppCompatActivity() {
         single { provideRetrofit(get(), get()) }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        startKoin {
-            androidContext(this@MainActivity)
-            modules(listOf(retrofitModule, serviceModule, repositoryModule, vmModule, viewModule))
-        }
-
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-        toolbar.setupWithNavController(findNavController(R.id.nav_host_fragment))
-    }
-
-
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+    abstract class RetroHubFragment(@LayoutRes private val layoutResId: Int) : Fragment(layoutResId){
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+            view.setOnClickListener { hideKeyboard() }
         }
     }
-
-    abstract class RetroHubFragment(@LayoutRes layoutResId: Int): Fragment(layoutResId)
 
 
 }
