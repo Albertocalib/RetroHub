@@ -13,4 +13,7 @@
     <string name="register_link">¿No tienes cuenta? Regístrate.</string>
     <string name="login_action">Entrar</string>
     <string name="login_error_message">Usuario y/o contraseña incorrectos.</string>
+    <string name="login_loading">Cargando contenido...</string>
+    <string name="alert_empty_field">Por favor rellene todos los campos</string>
+    <string name="alert_error_service">El nombre de usuario y/o contraseñas son incorrectos</string>
 </resources>
