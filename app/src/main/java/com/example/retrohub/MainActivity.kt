@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -13,7 +15,6 @@ import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.model_view.LoginViewModel
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.service.UserService
-import com.example.retrohub.view.LoginFragment
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
@@ -47,8 +48,14 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        fun shortlyToast() : Boolean {
+            Toast.makeText(applicationContext,R.string.work_in_progress,Toast.LENGTH_LONG).show()
+            return true
+        }
+
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_customize, R.id.action_discover,R.id.action_help,
+            R.id.action_profile,R.id.action_my_retrospectives -> shortlyToast()
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -76,7 +83,6 @@ class MainActivity : AppCompatActivity() {
         fun provideUseApi(retrofit: Retrofit): UserService {
             return retrofit.create(UserService::class.java)
         }
-
         single { provideUseApi(get()) }
     }
 
@@ -109,6 +115,7 @@ class MainActivity : AppCompatActivity() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
             view.setOnClickListener { hideKeyboard() }
+            requireActivity().toolbar.isVisible = true
         }
     }
 

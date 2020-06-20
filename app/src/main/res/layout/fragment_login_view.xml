@@ -97,7 +97,7 @@
         android:inputType="textPassword" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register_link"
@@ -112,7 +112,7 @@
         android:backgroundTint="@color/colorAccentLight"
         android:text="@string/login_action"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/create_account"
         app:layout_constraintStart_toStartOf="@+id/password_input"
         app:layout_constraintTop_toBottomOf="@+id/password_input"
         app:layout_constraintVertical_bias="0.3" />

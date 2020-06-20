@@ -2,6 +2,7 @@
     <string name="app_name">RetroHub</string>
     <string name="action_settings">Settings</string>
     <string name="commingSoon">Próximamente</string>
+    <string name="work_in_progress">Estamos trabajando en ello</string>
     <string name="empty_message">¡Ups! Parece que aún no tienes nada.</string>
 
     <!-- Main view -->
@@ -16,4 +17,12 @@
     <string name="login_loading">Cargando contenido...</string>
     <string name="alert_empty_field">Por favor rellene todos los campos</string>
     <string name="alert_error_service">El nombre de usuario y/o contraseñas son incorrectos</string>
+
+
+    <!-- Menú privado -->
+    <string name="my_retros">Mis retrospectivas</string>
+    <string name="discover_zone">Descubre</string>
+    <string name="help_zone">Ayuda</string>
+    <string name="customize_zone">Personaliza tu App</string>
+    <string name="user_data_zone">Mi perfil</string>
 </resources>

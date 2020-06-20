@@ -11,6 +11,6 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.retrohub.view.MainFragment"
-        android:label="MainFragment"/>
+        android:label="RetroHub"/>
 
 </navigation>
