@@ -1,8 +1,10 @@
 package com.example.retrohub.view
 
 import android.content.res.ColorStateList
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
@@ -10,6 +12,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.retrohub.MainActivity
 import com.example.retrohub.R
+import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.extensions.setVisibilityViews
 import com.example.retrohub.model_view.LoginState
@@ -17,6 +20,7 @@ import com.example.retrohub.model_view.LoginViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login_view.*
 import org.koin.android.ext.android.inject
+
 
 class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view) {
 
@@ -32,8 +36,11 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (Build.VERSION.SDK_INT >= 21) {
+            val window = requireActivity().window
+            window.statusBarColor = getColor(R.color.colorAccent)
+        }
         requireActivity().toolbar.isVisible = false
-        colorStateList = user_name_input.backgroundTintList
         create_account.setOnClickListener {
             Toast.makeText(context,R.string.work_in_progress,Toast.LENGTH_LONG).show()
         }

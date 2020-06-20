@@ -1,5 +1,6 @@
 package com.example.retrohub
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -11,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.model_view.LoginViewModel
 import com.example.retrohub.repository.UserRepository
@@ -34,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         startKoin()
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        toolbar.setupWithNavController(findNavController(R.id.nav_host_fragment))
     }
 
 
@@ -65,11 +66,6 @@ class MainActivity : AppCompatActivity() {
             modules(listOf(retrofitModule, serviceModule, repositoryModule, vmModule/*, viewModule*/))
     }
 
-
-
- /*   val viewModule = module {
-        factory { LoginFragment() }
-    }*/
 
     val repositoryModule = module {
         single { UserRepository(get()) }
@@ -116,6 +112,10 @@ class MainActivity : AppCompatActivity() {
             super.onViewCreated(view, savedInstanceState)
             view.setOnClickListener { hideKeyboard() }
             requireActivity().toolbar.isVisible = true
+            if (Build.VERSION.SDK_INT >= 21) {
+                val window = requireActivity().window
+                window.statusBarColor = getColor(R.color.colorPrimary)
+            }
         }
     }
 
