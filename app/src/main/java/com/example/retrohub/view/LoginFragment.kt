@@ -42,7 +42,7 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
         }
         requireActivity().toolbar.isVisible = false
         create_account.setOnClickListener {
-            Toast.makeText(context,R.string.work_in_progress,Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.registerFragment)
         }
         hideLoading()
         vm.state.observe(viewLifecycleOwner, ::login)

@@ -13,4 +13,9 @@
         android:name="com.example.retrohub.view.MainFragment"
         android:label="RetroHub"/>
 
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.retrohub.view.RegisterFragment"
+        android:label="Crear una cuenta"/>
+
 </navigation>
