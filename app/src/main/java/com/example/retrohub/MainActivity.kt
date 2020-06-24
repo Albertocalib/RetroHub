@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.model_view.LoginViewModel
+import com.example.retrohub.model_view.RegisterViewModel
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.service.UserService
 import com.google.gson.Gson
@@ -73,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     val vmModule = module {
         viewModel { LoginViewModel(get()) }
+        viewModel { RegisterViewModel(get()) }
     }
 
     val serviceModule = module {

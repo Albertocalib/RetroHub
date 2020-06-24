@@ -31,6 +31,12 @@
     <string name="email">E-mail: xxxxx@gmail.es</string>
     <string name="password">Contraseña</string>
     <string name="ready_button">¡Listo!</string>
+    <string name="fill_field">Este campo es obligatorio</string>
+    <string name="fill_field_incorrect">Dato no válido</string>
+    <string name="error_message_title">Parece que hay un problema</string>
+    <string name="error_message_authentication">El nombre de usuario elegido no está disponible.</string>
+    <string name="error_message_service">Ha ocurrido un problema de conexión, pruebe a intentarlo más tarde.</string>
+    <string name="invalid_username">Este nombre de usuario ya existe</string>
 
 
     <!-- Menú privado -->
@@ -39,4 +45,9 @@
     <string name="help_zone">Ayuda</string>
     <string name="customize_zone">Personaliza tu App</string>
     <string name="user_data_zone">Mi perfil</string>
+
+
+    <!-- Buttons -->
+    <string name="decline_button">Cancelar</string>
+    <string name="accept_button">Aceptar</string>
 </resources>

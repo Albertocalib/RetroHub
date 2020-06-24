@@ -11,4 +11,9 @@ interface UserService {
     @Headers("Content-Type: application/json")
     @POST("/user/login")
     fun getLogin(@Body login: UserRepository.Login): Call<Boolean>
+
+
+    @Headers("Content-Type: application/json")
+    @POST("/user/")
+    fun addUser(@Body user: UserRepository.User): Call<Boolean>
 }
