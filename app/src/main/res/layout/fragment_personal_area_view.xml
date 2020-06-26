@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container_personal_area"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="@dimen/icon_large"
+            android:layout_height="@dimen/icon_large"
+            android:layout_marginTop="@dimen/m_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_user_photo" />
+
+        <TextView
+            android:id="@+id/user_name"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m_margin"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_avatar"
+            tools:text="Ana Álvarez Ortiz" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/s_margin"
+            android:alpha="0.30"
+            android:background="@color/colorAccent"
+            app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_titles"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:barrierDirection="right"
+            app:constraint_referenced_ids="title_user_name,title_document_type"
+            app:layout_constraintBottom_toBottomOf="@id/divider_3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_user_name"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/l_margin"
+            android:layout_marginTop="@dimen/l_margin"
+            android:text="@string/user_label_edit_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/info_user_name"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/title_user_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier_titles"
+            app:layout_constraintTop_toTopOf="@+id/title_user_name"
+            tools:text="@string/user_label_edit_text" />
+
+        <View
+            android:id="@+id/divider_1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/s_margin"
+            android:alpha="0.45"
+            android:background="@color/black_secondary"
+            app:layout_constraintEnd_toEndOf="@+id/info_user_name"
+            app:layout_constraintStart_toStartOf="@+id/info_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/info_user_name" />
+
+        <TextView
+            android:id="@+id/title_document_type"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/s_margin"
+            app:layout_constraintStart_toStartOf="@+id/title_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/divider_1"
+            tools:text="@string/nie" />
+
+        <TextView
+            android:id="@+id/document_number"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/title_document_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier_titles"
+            app:layout_constraintTop_toBottomOf="@+id/divider_1"
+            app:layout_constraintVertical_bias="1"
+            tools:text="12345678Z" />
+
+        <View
+            android:id="@+id/divider_2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/s_margin"
+            android:alpha="0.45"
+            android:background="@color/black_secondary"
+            app:layout_constraintEnd_toEndOf="@+id/document_number"
+            app:layout_constraintStart_toStartOf="@+id/document_number"
+            app:layout_constraintTop_toBottomOf="@+id/document_number" />
+
+        <TextView
+            android:id="@+id/title_email"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/s_margin"
+            android:text="@string/email_label"
+            app:layout_constraintStart_toStartOf="@+id/title_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/divider_2" />
+
+        <TextView
+            android:id="@+id/email_info"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/m_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/title_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier_titles"
+            app:layout_constraintTop_toBottomOf="@+id/divider_2"
+            app:layout_constraintVertical_bias="1"
+            tools:text="xxxx@gmail.com" />
+
+        <View
+            android:id="@+id/divider_3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/s_margin"
+            android:alpha="0.45"
+            android:background="@color/black_secondary"
+            app:layout_constraintEnd_toEndOf="@+id/email_info"
+            app:layout_constraintStart_toStartOf="@+id/email_info"
+            app:layout_constraintTop_toBottomOf="@+id/email_info" />
+
+        <TextView
+            android:id="@+id/title_retro"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/l_margin"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_3"
+            android:text="@string/my_retros" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_graph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="progress_bar_current,progress_bar_past,bottom_graph" />
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/emtpy_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="icon_empty_box,label_text_empty_view" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_current"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="40dp"
+            android:layout_height="@dimen/icon_large"
+            android:layout_marginStart="@dimen/m_margin"
+            android:layout_marginTop="@dimen/m_margin"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/progress_bar_vertical"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/title_retro" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_past"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="40dp"
+            android:layout_height="@dimen/icon_large"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/m_margin"
+            android:layout_marginEnd="@dimen/m_margin"
+            android:max="100"
+            android:progress="70"
+            android:progressDrawable="@drawable/progress_bar_vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/title_retro" />
+
+        <View
+            android:id="@+id/bottom_graph"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="@dimen/l_margin"
+            android:layout_marginEnd="@dimen/l_margin"
+            android:background="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress_bar_current" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <ImageView
+            android:id="@+id/icon_empty_box"
+            android:layout_width="@dimen/icon_medium"
+            android:layout_height="@dimen/icon_medium"
+            android:layout_marginTop="@dimen/m_margin"
+            app:layout_constraintEnd_toEndOf="@+id/bottom_graph"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_retro"
+            app:srcCompat="@drawable/ic_box" />
+
+        <TextView
+            android:id="@+id/label_text_empty_view"
+            style="@style/mainTextAcent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/catamaran_medium"
+            android:paddingTop="@dimen/m_margin"
+            android:text="@string/empty_message"
+            android:textSize="@dimen/m_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/icon_empty_box"
+            app:layout_constraintStart_toStartOf="@+id/icon_empty_box"
+            app:layout_constraintTop_toBottomOf="@+id/icon_empty_box" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_retro"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="bottom_graph,label_text_empty_view" />
+
+        <TextView
+            android:id="@+id/label_star"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m_margin"
+            android:gravity="center"
+            android:text="@string/retro_star"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier_retro" />
+
+
+        <TextView
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m_margin"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_star"
+            tools:text="Barco de vela" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m_margin"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier_retro"
+            android:text="@string/find_retros"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

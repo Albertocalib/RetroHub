@@ -1,11 +1,8 @@
 package com.example.retrohub.view
 
-import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.lifecycle.observe

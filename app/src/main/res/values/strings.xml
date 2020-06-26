@@ -50,4 +50,9 @@
     <!-- Buttons -->
     <string name="decline_button">Cancelar</string>
     <string name="accept_button">Aceptar</string>
+
+    <!-- Personal Area -->
+    <string name="email_label">Email</string>
+    <string name="retro_star">Tu retrospectiva estrella es...</string>
+    <string name="find_retros">"Descubre nuevos tipos de retrospectivas pulsando aquí"</string>
 </resources>
