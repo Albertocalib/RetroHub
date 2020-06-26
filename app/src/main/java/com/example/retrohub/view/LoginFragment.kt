@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.retrohub.MainActivity
 import com.example.retrohub.R
 import com.example.retrohub.extensions.getColor
+import com.example.retrohub.extensions.getString
 import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.extensions.setVisibilityViews
 import com.example.retrohub.model_view.LoginState
@@ -26,13 +27,11 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
 
     private val vm: LoginViewModel by inject()
 
-    private var colorStateList: ColorStateList?=null
-
     private val username: String
-        get() = user_name_input.text.toString()
+        get() = user_name_input.getString()
 
     private val password: String
-        get() = password_input.text.toString()
+        get() = password_input.getString()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,27 +46,25 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
         hideLoading()
         vm.state.observe(viewLifecycleOwner, ::login)
         button_login.setOnClickListener {
-            showLoading()
             hideKeyboard()
-            error_username_background.isVisible = username.isBlank()
-            error_password_background.isVisible = password.isBlank()
-            if(username.isBlank() || password.isBlank()){
-                errorMessage(R.string.alert_empty_field)
-            }else{
-                vm.getLogin(user_name_input.text.toString(),password_input.text.toString())
+            var failed = false
+            user_name_input.error = if (username.isBlank()) getString(R.string.fill_field).also { failed = true } else null
+            password_input.error = if (password.isBlank()) getString(R.string.fill_field).also { failed = true } else null
+            if (!failed) {
+                showLoading()
+                vm.getLogin(user_name_input.getString(), password_input.getString() )
             }
-
         }
     }
 
-    private fun login(state: LoginState){
-        when(state){
+    private fun login(state: LoginState) {
+        when (state) {
             LoginState.ERROR -> errorMessage(R.string.alert_error_service)
             LoginState.SUCCESS -> findNavController().navigate(R.id.mainFragment)
         }
     }
 
-    private fun errorMessage(@StringRes string: Int){
+    private fun errorMessage(@StringRes string: Int) {
         hideLoading()
         error_message.text = getText(string)
         error_message.isVisible = true
@@ -77,8 +74,11 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
 
     private fun hideLoading() = setLoadingVisibility(false)
 
-    private fun setLoadingVisibility(isVisible: Boolean){
-        setVisibilityViews(isVisible, listOf(loading_text,loading_background,lottieAnimationLoading))
+    private fun setLoadingVisibility(isVisible: Boolean) {
+        setVisibilityViews(
+            isVisible,
+            listOf(loading_text, loading_background, lottieAnimationLoading)
+        )
 
         user_name_input.isEnabled = !isVisible
         password_input.isEnabled = !isVisible
