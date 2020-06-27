@@ -3,26 +3,29 @@ package com.example.retrohub.view
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.retrohub.MainActivity
 import com.example.retrohub.R
-import com.example.retrohub.extensions.getColor
-import com.example.retrohub.extensions.getString
-import com.example.retrohub.extensions.hideKeyboard
-import com.example.retrohub.extensions.setVisibilityViews
+import com.example.retrohub.extensions.*
 import com.example.retrohub.model_view.LoginState
 import com.example.retrohub.model_view.LoginViewModel
+import com.example.retrohub.model_view.PersistedViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login_view.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 
 class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view) {
 
     private val vm: LoginViewModel by inject()
+    private val persistedVM: PersistedViewModel by inject()
 
     private val username: String
         get() = user_name_input.getString()
@@ -57,7 +60,24 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
     private fun login(state: LoginState) {
         when (state) {
             LoginState.ERROR -> errorMessage(R.string.alert_error_service)
-            LoginState.SUCCESS -> findNavController().navigate(R.id.mainFragment)
+            LoginState.SUCCESS -> setPersistedUser()
+        }
+    }
+
+    private fun setPersistedUser(){
+        persistedVM.liveData.observe(viewLifecycleOwner,::saveUser)
+        GlobalScope.launch(Dispatchers.IO) { persistedVM.setPersistedUser(username) }
+    }
+
+    private fun saveUser(result :Pair<Boolean, Map<String,String>>){
+        if(result.first){
+            findNavController().popBackStack(R.id.loginFragment,true)
+            findNavController().navigate(R.id.mainFragment)
+        }else{
+            showDialog(R.string.error_message_title,R.string.error_message_service){
+                user_name_input.editText?.setText("")
+                password_input.editText?.setText("")
+            }
         }
     }
 

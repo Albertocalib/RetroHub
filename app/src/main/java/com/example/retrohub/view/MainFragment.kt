@@ -18,4 +18,6 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) 
             findNavController().navigate(R.id.loginFragment)
         }
     }
+
+
 }

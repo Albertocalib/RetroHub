@@ -9,12 +9,12 @@ import com.example.retrohub.repository.local.entities.UserEntity
 @Dao
 interface UserDAO {
     @Query("SELECT * FROM userentity LIMIT 1")
-    fun getPersistedUser(): UserEntity
+    suspend fun getPersistedUser(): UserEntity
 
     @Insert
-    fun insert(user: UserEntity)
+    suspend fun insert(user: UserEntity)
 
     @Query("DELETE FROM userentity")
-    fun delete()
+    suspend fun delete()
 
 }

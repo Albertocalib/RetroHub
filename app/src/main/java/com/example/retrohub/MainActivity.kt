@@ -16,6 +16,7 @@ import androidx.room.Room
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.model_view.LoginViewModel
+import com.example.retrohub.model_view.PersistedViewModel
 import com.example.retrohub.model_view.RegisterViewModel
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.local.AppDatabase
@@ -29,6 +30,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -42,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
     }
 
+    override fun onDestroy() {
+        stopKoin()
+        super.onDestroy()
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -78,6 +84,7 @@ class MainActivity : AppCompatActivity() {
     val vmModule = module {
         viewModel { LoginViewModel(get()) }
         viewModel { RegisterViewModel(get()) }
+        viewModel { PersistedViewModel(get()) }
     }
 
     val serviceModule = module {
@@ -89,7 +96,7 @@ class MainActivity : AppCompatActivity() {
 
     val persistenceModule = module {
         single {
-            Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "database.db")
+            Room.databaseBuilder(applicationContext, AppDatabase::class.java, "database.db")
                 .build()
         }
         single { get<AppDatabase>().userDao() }

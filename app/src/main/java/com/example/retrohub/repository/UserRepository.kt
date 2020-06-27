@@ -41,11 +41,14 @@ class UserRepository(private val service: UserService, private val userDAO: User
             user.toLowerCase(Locale.ROOT), password, email)
     )
 
-    fun setPersistedUser(username: String,name: String, lastname: String){
+    suspend fun setPersistedUser(username: String?,name: String?, lastname: String?): Boolean{
+        if(username.isNullOrBlank() || name.isNullOrBlank() || lastname.isNullOrBlank()){
+            return false
+        }
         userDAO.delete()
         userDAO.insert(UserEntity(username, name, lastname))
-
+        return true
     }
 
-    fun getPersistedUser() = userDAO.getPersistedUser()
+    suspend fun getPersistedUser() = userDAO.getPersistedUser()
 }
