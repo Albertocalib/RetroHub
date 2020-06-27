@@ -169,14 +169,17 @@
             android:id="@+id/group_graph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="progress_bar_current,progress_bar_past,bottom_graph" />
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="progress_bar_current,progress_bar_past,bottom_graph,comparative_text" />
 
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/emtpy_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:visibility="gone"
+            tools:visibility="visible"
             app:constraint_referenced_ids="icon_empty_box,label_text_empty_view" />
 
         <ProgressBar
@@ -217,6 +220,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/progress_bar_current" />
 
+        <TextView
+            android:id="@+id/comparative_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/s_margin"
+            android:gravity="center"
+            android:textColor="@color/black_secondary"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            app:layout_constraintStart_toStartOf="@id/bottom_graph"
+            app:layout_constraintEnd_toEndOf="@id/bottom_graph"
+            app:layout_constraintTop_toBottomOf="@id/bottom_graph"
+            android:text="@string/retros_comparative"/>
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
@@ -252,7 +268,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="bottom_graph,label_text_empty_view" />
+            app:constraint_referenced_ids="comparative_text,label_text_empty_view" />
 
         <TextView
             android:id="@+id/label_star"

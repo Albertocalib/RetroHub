@@ -10,23 +10,25 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.room.Room
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.model_view.LoginViewModel
 import com.example.retrohub.model_view.PersistedViewModel
+import com.example.retrohub.model_view.PersonalAreaViewModel
 import com.example.retrohub.model_view.RegisterViewModel
+import com.example.retrohub.repository.RetroRepository
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.local.AppDatabase
+import com.example.retrohub.service.RetrospectiveService
 import com.example.retrohub.service.UserService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
-import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -65,8 +67,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         return when (item.itemId) {
-            R.id.action_customize, R.id.action_discover,R.id.action_help,
-            R.id.action_profile,R.id.action_my_retrospectives -> shortlyToast()
+            R.id.action_customize, R.id.action_discover,R.id.action_help
+                ,R.id.action_my_retrospectives -> shortlyToast()
+            R.id.action_profile -> {
+                Navigation.findNavController(this,nav_host_fragment.id).navigate(R.id.personalAreaFragment)
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -79,19 +85,25 @@ class MainActivity : AppCompatActivity() {
 
     val repositoryModule = module {
         single { UserRepository(get(), get()) }
+        single { RetroRepository(get()) }
     }
 
     val vmModule = module {
         viewModel { LoginViewModel(get()) }
         viewModel { RegisterViewModel(get()) }
         viewModel { PersistedViewModel(get()) }
+        viewModel { PersonalAreaViewModel(get(),get()) }
     }
 
     val serviceModule = module {
         fun provideUseApi(retrofit: Retrofit): UserService {
             return retrofit.create(UserService::class.java)
         }
+        fun provideRetroApi(retrofit: Retrofit): RetrospectiveService {
+            return retrofit.create(RetrospectiveService::class.java)
+        }
         single { provideUseApi(get()) }
+        single { provideRetroApi(get()) }
     }
 
     val persistenceModule = module {
@@ -116,7 +128,7 @@ class MainActivity : AppCompatActivity() {
 
         fun provideRetrofit(factory: Gson, client: OkHttpClient): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://192.168.1.136:8081")
+                .baseUrl("http://192.168.1.131:8081")
                 .addConverterFactory(GsonConverterFactory.create(factory))
                 .client(client)
                 .build()

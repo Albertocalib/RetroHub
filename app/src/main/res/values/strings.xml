@@ -55,4 +55,5 @@
     <string name="email_label">Email</string>
     <string name="retro_star">Tu retrospectiva estrella es...</string>
     <string name="find_retros">"Descubre nuevos tipos de retrospectivas pulsando aquí"</string>
+    <string name="retros_comparative">"Esta es la comparativa del número de retrospectivas realizadass en el mes en curso respecto al mes anterior."</string>
 </resources>
