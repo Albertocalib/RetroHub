@@ -10,6 +10,7 @@ def life_versions = "1.1.1"
 def koin_version = "2.0.1"
 def retrofit_version = "2.4.0"
 def lottie_version ="3.4.0"
+def room_version = "2.2.5"
 
 android {
     compileSdkVersion 28
@@ -57,6 +58,10 @@ dependencies {
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     //Koin
     implementation "org.koin:koin-core:$koin_version"

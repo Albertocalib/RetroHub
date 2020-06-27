@@ -210,9 +210,9 @@
             android:id="@+id/bottom_graph"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            android:layout_marginStart="@dimen/l_margin"
-            android:layout_marginEnd="@dimen/l_margin"
-            android:background="@color/colorAccent"
+            android:layout_marginStart="@dimen/xl_margin"
+            android:layout_marginEnd="@dimen/xl_margin"
+            android:background="@color/lime_green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/progress_bar_current" />

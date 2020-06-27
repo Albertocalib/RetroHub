@@ -12,17 +12,20 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.room.Room
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.model_view.LoginViewModel
 import com.example.retrohub.model_view.RegisterViewModel
 import com.example.retrohub.repository.UserRepository
+import com.example.retrohub.repository.local.AppDatabase
 import com.example.retrohub.service.UserService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -64,12 +67,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun startKoin()  = startKoin {
             androidContext(this@MainActivity)
-            modules(listOf(retrofitModule, serviceModule, repositoryModule, vmModule/*, viewModule*/))
+            modules(listOf(retrofitModule, serviceModule,persistenceModule, repositoryModule, vmModule))
     }
 
 
     val repositoryModule = module {
-        single { UserRepository(get()) }
+        single { UserRepository(get(), get()) }
     }
 
     val vmModule = module {
@@ -82,6 +85,14 @@ class MainActivity : AppCompatActivity() {
             return retrofit.create(UserService::class.java)
         }
         single { provideUseApi(get()) }
+    }
+
+    val persistenceModule = module {
+        single {
+            Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "database.db")
+                .build()
+        }
+        single { get<AppDatabase>().userDao() }
     }
 
     val retrofitModule = module {

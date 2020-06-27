@@ -33,7 +33,9 @@ class LoginViewModel(private val userRepository: UserRepository): ViewModel(), r
     }
 
     override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-        mutableState.value = if(response.isSuccessful) LoginState.SUCCESS else LoginState.ERROR
+        mutableState.value = if(response.isSuccessful){
+            LoginState.SUCCESS
+        } else LoginState.ERROR
     }
 }
  enum class LoginState{

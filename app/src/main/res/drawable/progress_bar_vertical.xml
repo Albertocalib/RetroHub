@@ -10,8 +10,8 @@
             <shape>
                 <gradient
                     android:angle="90"
-                    android:endColor="@color/colorAccentLight"
-                    android:startColor="@color/colorAccent" />
+                    android:endColor="@color/green_light"
+                    android:startColor="@color/lime_green" />
                 <corners
                     android:topLeftRadius="4dp"
                     android:topRightRadius="4dp" />
