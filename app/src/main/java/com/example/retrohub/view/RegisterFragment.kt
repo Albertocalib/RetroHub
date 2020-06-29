@@ -10,6 +10,7 @@ import com.example.retrohub.MainActivity
 import com.example.retrohub.R
 import com.example.retrohub.extensions.showDialog
 import com.example.retrohub.model_view.RegisterViewModel
+import com.example.retrohub.view.mobile.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,7 +20,7 @@ import org.koin.android.ext.android.inject
 
 class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_register_view) {
 
-    private val user = User()
+    private lateinit var user : User
     private var validated = false
 
     private val vm: RegisterViewModel by inject()
@@ -53,13 +54,15 @@ class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_registe
 
     private fun validate() {
         validated = true
-        user.name = validText(name_input) { true }
-        user.password = validText(password_input) { true }
-        user.documentType = getString(if (nie_option.isChecked) R.string.nie else R.string.nif)
-        user.documentUser = validText(document_input, pattern = ::isDocumentValid)
-        user.email = validText(email_input, true, ::isEmailValid)
-        user.lastname = validText(lastname_input) { true }
-        user.userName = validText(user_name_input) { true }
+        user = User(
+            validText(name_input) { true }.also { validated = it != "" },
+            validText(lastname_input) { true }.also { validated = it != "" },
+            validText(user_name_input) { true }.also { validated = it != "" },
+            validText(document_input, pattern = ::isDocumentValid).also { validated = it != "" },
+            getString(if (nie_option.isChecked) R.string.nie else R.string.nif).also { validated = it != "" },
+            validText(password_input) { true }.also { validated = it != "" },
+            validText(email_input, true, ::isEmailValid)
+        )
         //TODO: add loading
         if (validated) vm.createAccount(user)
     }
@@ -88,12 +91,3 @@ class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_registe
 
 }
 
-class User {
-    lateinit var documentUser: String
-    lateinit var documentType: String
-    lateinit var name: String
-    lateinit var lastname: String
-    lateinit var userName: String
-    lateinit var password: String
-    var email: String? = null
-}

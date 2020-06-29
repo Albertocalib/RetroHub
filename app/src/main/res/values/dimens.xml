@@ -14,9 +14,11 @@
     <dimen name="m_margin">15dp</dimen>
     <dimen name="l_margin">20dp</dimen>
     <dimen name="xl_margin">25dp</dimen>
+    <dimen name="xxl_margin">30dp</dimen>
 
     <dimen name="icon_large">70dp</dimen>
     <dimen name="icon_medium">50dp</dimen>
+    <dimen name="icon_small">30dp</dimen>
 
     <dimen name="image_retro">160dp</dimen>
 </resources>

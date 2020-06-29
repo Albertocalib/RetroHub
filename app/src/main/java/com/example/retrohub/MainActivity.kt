@@ -15,10 +15,7 @@ import androidx.navigation.findNavController
 import androidx.room.Room
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
-import com.example.retrohub.model_view.LoginViewModel
-import com.example.retrohub.model_view.PersistedViewModel
-import com.example.retrohub.model_view.PersonalAreaViewModel
-import com.example.retrohub.model_view.RegisterViewModel
+import com.example.retrohub.model_view.*
 import com.example.retrohub.repository.RetroRepository
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.local.AppDatabase
@@ -93,6 +90,7 @@ class MainActivity : AppCompatActivity() {
         viewModel { RegisterViewModel(get()) }
         viewModel { PersistedViewModel(get()) }
         viewModel { PersonalAreaViewModel(get(),get()) }
+        viewModel { UserDataViewModel(get()) }
     }
 
     val serviceModule = module {
@@ -128,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
         fun provideRetrofit(factory: Gson, client: OkHttpClient): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://192.168.1.131:8081")
+                .baseUrl("http://192.168.1.137:8081")
                 .addConverterFactory(GsonConverterFactory.create(factory))
                 .client(client)
                 .build()

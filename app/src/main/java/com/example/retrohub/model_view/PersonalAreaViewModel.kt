@@ -6,6 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrohub.repository.RetroRepository
 import com.example.retrohub.repository.UserRepository
+import com.example.retrohub.repository.data.RetroDTO
+import com.example.retrohub.repository.data.UserDTO
+import com.example.retrohub.view.mobile.Retro
+import com.example.retrohub.view.mobile.User
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
@@ -13,51 +17,46 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class PersonalAreaViewModel(private val retroRepository: RetroRepository, private val userRepository: UserRepository): ViewModel(), retrofit2.Callback<Array<RetroRepository.Retro>> {
+class PersonalAreaViewModel(private val retroRepository: RetroRepository, private val userRepository: UserRepository): ViewModel(),
+    retrofit2.Callback<Array<RetroDTO>>{
 
     private val mutableNumber = MutableLiveData<Pair<Int,Int>>()
 
     val numberOfRetros: LiveData<Pair<Int,Int>>
         get() = mutableNumber
 
-    private val mutableList = MutableLiveData<Array<RetroRepository.Retro>>()
-
-    val retroList: LiveData<Array<RetroRepository.Retro>>
-        get() = mutableList
 
     private val mutableuserName = MutableLiveData<String>()
 
     val userName: LiveData<String>
         get() = mutableuserName
 
+    private val mutableList = MutableLiveData<List<Retro>>()
 
-    private val mutableName = MutableLiveData<String>()
-
-    val name: LiveData<String>
-        get() = mutableName
+    val retroList: LiveData<List<Retro>>
+        get() = mutableList
 
     fun getNumberOfRetrospectives(){
         if(retroList.value.isNullOrEmpty()){
             viewModelScope.launch {
-                val user = userRepository.getPersistedUser()
-                mutableuserName.value =  user.username
-                mutableName.value =  user.firstName + " " + user.lastName
+                mutableuserName.value = userRepository.getPersistedUser().username
                 retroRepository.getAllRetrosByUser(mutableuserName.value?:"").enqueue(this@PersonalAreaViewModel)
+                userRepository.getUserData(mutableuserName.value?:"")
             }
         }
     }
 
-    override fun onFailure(call: Call<Array<RetroRepository.Retro>>, t: Throwable) {
+    override fun onFailure(call: Call<Array<RetroDTO>>, t: Throwable) {
         mutableNumber.value =  0 to 0
-        mutableList.value =  emptyArray()
+        mutableList.value =  emptyList()
     }
 
-    override fun onResponse(call: Call<Array<RetroRepository.Retro>>,response: Response<Array<RetroRepository.Retro>>) {
+    override fun onResponse(call: Call<Array<RetroDTO>>,response: Response<Array<RetroDTO>>) {
         mutableNumber.value = if(response.isSuccessful) getMonthsRetros(response.body()) else 0 to 0
-        mutableList.value = if (response.isSuccessful) response.body()?: emptyArray() else emptyArray()
+        mutableList.value = if (response.isSuccessful) response.body()?.map { fromDTO(it) }?: emptyList() else emptyList()
     }
 
-    private fun getMonthsRetros(list: Array<RetroRepository.Retro>?): Pair<Int,Int>{
+    private fun getMonthsRetros(list: Array<RetroDTO>?): Pair<Int,Int>{
         return if(list.isNullOrEmpty()) 0 to 0
         else {
             val calendar = Calendar.getInstance()
@@ -75,3 +74,10 @@ class PersonalAreaViewModel(private val retroRepository: RetroRepository, privat
         }
     }
 }
+
+fun fromDTO(retro: RetroDTO) = Retro(
+    retro.username,
+    retro.type,
+    retro.date,
+    retro.data
+)

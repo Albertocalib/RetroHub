@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.retrohub.repository.UserRepository
-import com.example.retrohub.view.User
+import com.example.retrohub.view.mobile.User
 import retrofit2.Call
 import retrofit2.Response
 

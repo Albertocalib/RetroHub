@@ -11,6 +11,15 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
 
+        <View
+            android:id="@+id/user_header"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0.30"
+            android:background="@color/colorPrimaryLight"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/user_name" />
+
         <ImageView
             android:id="@+id/user_avatar"
             android:layout_width="@dimen/icon_large"
@@ -28,19 +37,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m_margin"
             android:gravity="center"
+            android:paddingBottom="@dimen/m_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_avatar"
             tools:text="Ana Álvarez Ortiz" />
 
         <View
-            android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="@dimen/s_margin"
-            android:alpha="0.30"
-            android:background="@color/colorAccent"
-            app:layout_constraintTop_toBottomOf="@+id/user_name" />
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryLight"
+            app:layout_constraintBottom_toBottomOf="@id/user_header"/>
+
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier_titles"
@@ -60,7 +68,7 @@
             android:layout_marginTop="@dimen/l_margin"
             android:text="@string/user_label_edit_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+            app:layout_constraintTop_toBottomOf="@+id/user_header" />
 
         <TextView
             android:id="@+id/info_user_name"
@@ -68,6 +76,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m_margin"
+            android:textColor="@color/black_secondary"
             app:layout_constraintBottom_toBottomOf="@+id/title_user_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/barrier_titles"
@@ -100,6 +109,7 @@
             style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/black_secondary"
             android:layout_marginStart="@dimen/m_margin"
             app:layout_constraintBottom_toBottomOf="@+id/title_document_type"
             app:layout_constraintEnd_toEndOf="parent"
@@ -135,6 +145,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/m_margin"
+            android:textColor="@color/black_secondary"
             app:layout_constraintBottom_toBottomOf="@+id/title_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/barrier_titles"
@@ -158,7 +169,7 @@
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/l_margin"
+            android:layout_marginTop="@dimen/xxl_margin"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +182,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             tools:visibility="visible"
-            app:constraint_referenced_ids="progress_bar_current,progress_bar_past,bottom_graph,comparative_text" />
+            app:constraint_referenced_ids="past_progress, current_progress, progress_bar_current,progress_bar_past,bottom_graph,comparative_text" />
 
 
         <androidx.constraintlayout.widget.Group
@@ -181,6 +192,7 @@
             android:visibility="gone"
             tools:visibility="visible"
             app:constraint_referenced_ids="icon_empty_box,label_text_empty_view" />
+
 
         <ProgressBar
             android:id="@+id/progress_bar_current"
@@ -195,6 +207,17 @@
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/title_retro" />
 
+
+        <TextView
+            android:id="@+id/current_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_bar_current"
+            app:layout_constraintStart_toStartOf="@+id/progress_bar_current"
+            app:layout_constraintEnd_toEndOf="@+id/progress_bar_current"
+            style="@style/TextAppearance.AppCompat.Small"
+            tools:text="4"/>
+
         <ProgressBar
             android:id="@+id/progress_bar_past"
             style="@android:style/Widget.ProgressBar.Horizontal"
@@ -208,6 +231,18 @@
             android:progressDrawable="@drawable/progress_bar_vertical"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/title_retro" />
+
+
+        <TextView
+            android:id="@+id/past_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_bar_past"
+            app:layout_constraintStart_toStartOf="@+id/progress_bar_past"
+            app:layout_constraintEnd_toEndOf="@+id/progress_bar_past"
+            style="@style/TextAppearance.AppCompat.Small"
+            tools:text="4"/>
+
 
         <View
             android:id="@+id/bottom_graph"
@@ -245,7 +280,7 @@
             android:layout_width="@dimen/icon_medium"
             android:layout_height="@dimen/icon_medium"
             android:layout_marginTop="@dimen/m_margin"
-            app:layout_constraintEnd_toEndOf="@+id/bottom_graph"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_retro"
             app:srcCompat="@drawable/ic_box" />
@@ -284,8 +319,9 @@
 
 
         <TextView
+            android:id="@+id/best_retro_name"
             style="@style/TextAppearance.MaterialComponents.Headline4"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m_margin"
             android:gravity="center"
@@ -294,7 +330,28 @@
             app:layout_constraintTop_toBottomOf="@id/label_star"
             tools:text="Barco de vela" />
 
+        <ImageView
+            android:id="@+id/icon_star_1"
+            android:layout_width="@dimen/icon_small"
+            android:layout_height="@dimen/icon_small"
+            app:srcCompat="@drawable/ic_stars"
+            android:layout_marginEnd="@dimen/m_margin"
+            app:layout_constraintTop_toTopOf="@id/best_retro_name"
+            app:layout_constraintEnd_toStartOf="@id/best_retro_name"/>
+
+        <ImageView
+            android:id="@+id/icon_star_2"
+            android:layout_width="@dimen/icon_small"
+            android:layout_height="@dimen/icon_small"
+            app:srcCompat="@drawable/ic_stars"
+            android:rotation="180"
+            android:scaleType="fitXY"
+            android:layout_marginStart="@dimen/m_margin"
+            app:layout_constraintTop_toTopOf="@id/best_retro_name"
+            app:layout_constraintStart_toEndOf="@id/best_retro_name"/>
+
         <TextView
+            android:id="@+id/link_discover"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/m_margin"
@@ -305,6 +362,49 @@
             android:text="@string/find_retros"
             android:visibility="gone"
             tools:visibility="visible"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/loading_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="loading_background,lottieAnimationLoading,loading_text"/>
+
+        <View
+            android:id="@+id/loading_background"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:alpha="0.90"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationLoading"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:elevation="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/loading_background"
+            app:layout_constraintStart_toStartOf="@+id/loading_background"
+            app:layout_constraintTop_toTopOf="@+id/loading_background"
+            app:layout_constraintVertical_bias="0.40"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
+
+        <TextView
+            android:id="@+id/loading_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            android:fontFamily="@font/catamaran_medium"
+            android:textColor="@color/black_secondary"
+            android:text="@string/login_loading"
+            android:textSize="@dimen/l_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/lottieAnimationLoading"
+            app:layout_constraintStart_toStartOf="@+id/lottieAnimationLoading"
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationLoading" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
