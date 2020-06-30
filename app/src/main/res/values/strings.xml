@@ -62,4 +62,17 @@
     <!-- Exit app -->
     <string name="are_you_sure">¿Estás seguro de querer cerrar la sesión?</string>
     <string name="are_you_sure_title">Salir</string>
+
+    <!--Create retro -->
+    <string name="choose_type">Elige el tipo de retrospectivas que vas a realizar:</string>
+    <string name="type_release">Fin de release</string>
+    <string name="type_sprint">Fin de sprint</string>
+    <string name="choose_subtype">Elige el subtipo que prefieras:</string>
+    <string name="starship">Estrella de mar</string>
+    <string name="sailboat">Barco de vela</string>
+    <string name="three_little_pigs">Los 3 cerditos</string>
+    <string name="semaphore">Semáforo</string>
+    <string name="fourl">4Ls</string>
+    <string name="fast_and_furious">Fast and Furious</string>
+    <string name="next_step">Continuar</string>
 </resources>

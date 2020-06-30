@@ -25,6 +25,8 @@ class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_registe
 
     private val vm: RegisterViewModel by inject()
 
+    override fun getToolbarTitle() = "Crear cuenta"
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().toolbar.menu.clear()

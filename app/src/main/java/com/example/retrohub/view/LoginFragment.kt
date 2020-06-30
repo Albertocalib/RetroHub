@@ -33,6 +33,8 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
     private val password: String
         get() = password_input.getString()
 
+    override fun getToolbarTitle() = "Login"
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (Build.VERSION.SDK_INT >= 21) {

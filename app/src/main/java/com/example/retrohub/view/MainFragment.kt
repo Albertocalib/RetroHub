@@ -12,10 +12,15 @@ import kotlinx.android.synthetic.main.fragment_empty_view.*
 
 class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) {
 
+    override fun getToolbarTitle() = "RetroHub"
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         icon_empty_box.setOnClickListener {
             findNavController().navigate(R.id.loginFragment)
+        }
+        floating_action_button.setOnClickListener {
+            findNavController().navigate(R.id.selectionTypeFragment)
         }
     }
 

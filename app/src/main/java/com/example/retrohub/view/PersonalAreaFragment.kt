@@ -22,6 +22,8 @@ class PersonalAreaFragment : MainActivity.RetroHubFragment(R.layout.fragment_per
     val personalAreaVM: PersonalAreaViewModel by inject()
     val personalDataVM: UserDataViewModel by inject()
 
+    override fun getToolbarTitle() = "Área personal"
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loading_view.isVisible = true
@@ -46,7 +48,7 @@ class PersonalAreaFragment : MainActivity.RetroHubFragment(R.layout.fragment_per
                 Toast.makeText(requireContext(),R.string.commingSoon,Toast.LENGTH_SHORT).show()
             }
         } else {
-            best_retro_name.text = list.groupingBy { it.type }
+            best_retro_name.text = list.groupingBy { it.subtype }
                 .eachCount()
                 .maxBy { it.value }
                 ?.key

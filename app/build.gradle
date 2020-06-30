@@ -11,6 +11,7 @@ def koin_version = "2.0.1"
 def retrofit_version = "2.4.0"
 def lottie_version ="3.4.0"
 def room_version = "2.2.5"
+def recycler_version="28.0.0"
 
 android {
     compileSdkVersion 28
@@ -58,6 +59,9 @@ dependencies {
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    //RecyclerView
+    implementation "com.android.support:recyclerview-v7:$recycler_version"
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"

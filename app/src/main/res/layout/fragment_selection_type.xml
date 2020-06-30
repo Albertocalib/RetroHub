@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container_selection_type"
+    android:layout_width="match_parent"
+    android:padding="@dimen/l_margin"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_type"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:checkedButton="@+id/release_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RadioButton
+        android:id="@+id/release_option"
+        android:textColor="@color/black_secondary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/type_release"/>
+    <RadioButton
+        android:id="@+id/sprint_option"
+        android:textColor="@color/black_secondary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/type_sprint"/>
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/m_margin"
+        android:layout_marginBottom="@dimen/m_margin"
+        android:background="@color/colorAccent"/>
+
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_subtype"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/colorPrimaryExtraLight"
+        android:id="@+id/subtypes_list"
+        android:layout_marginTop="@dimen/l_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:id="@+id/next_step"
+        android:layout_marginTop="@dimen/l_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/next_step"/>
+
+
+</LinearLayout>

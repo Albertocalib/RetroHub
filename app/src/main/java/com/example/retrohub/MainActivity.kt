@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.get
 import androidx.room.Room
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
@@ -152,10 +154,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     abstract class RetroHubFragment(@LayoutRes private val layoutResId: Int) : Fragment(layoutResId){
+
+        abstract fun getToolbarTitle(): String
+
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
             view.setOnClickListener { hideKeyboard() }
             requireActivity().toolbar.isVisible = true
+            requireActivity().toolbar.title = getToolbarTitle()
             if (Build.VERSION.SDK_INT >= 21) {
                 val window = requireActivity().window
                 window.statusBarColor = getColor(R.color.colorPrimary)
