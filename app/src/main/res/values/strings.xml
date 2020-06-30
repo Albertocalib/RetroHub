@@ -45,6 +45,7 @@
     <string name="help_zone">Ayuda</string>
     <string name="customize_zone">Personaliza tu App</string>
     <string name="user_data_zone">Mi perfil</string>
+    <string name="exit_app">Cerrar sesión</string>
 
 
     <!-- Buttons -->

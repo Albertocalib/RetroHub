@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         return when (item.itemId) {
             R.id.action_customize, R.id.action_discover,R.id.action_help
-                ,R.id.action_my_retrospectives -> shortlyToast()
+                ,R.id.action_my_retrospectives, R.id.action_close -> shortlyToast()
             R.id.action_profile -> {
                 Navigation.findNavController(this,nav_host_fragment.id).navigate(R.id.personalAreaFragment)
                 return true
