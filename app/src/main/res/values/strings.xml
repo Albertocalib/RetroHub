@@ -58,4 +58,8 @@
     <string name="find_retros">"Descubre nuevos tipos de retrospectivas pulsando aquí"</string>
     <string name="retros_comparative">"Comparación del número de retrospectivas del mes en curso y del anterior."</string>
     <string name="without_data">Sin datos</string>
+
+    <!-- Exit app -->
+    <string name="are_you_sure">¿Estás seguro de querer cerrar la sesión?</string>
+    <string name="are_you_sure_title">Salir</string>
 </resources>

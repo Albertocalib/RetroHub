@@ -12,9 +12,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.room.Room
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
+import com.example.retrohub.extensions.showDialog
 import com.example.retrohub.model_view.*
 import com.example.retrohub.repository.RetroRepository
 import com.example.retrohub.repository.UserRepository
@@ -65,7 +67,19 @@ class MainActivity : AppCompatActivity() {
 
         return when (item.itemId) {
             R.id.action_customize, R.id.action_discover,R.id.action_help
-                ,R.id.action_my_retrospectives, R.id.action_close -> shortlyToast()
+                ,R.id.action_my_retrospectives -> shortlyToast()
+            R.id.action_close -> {
+                nav_host_fragment.showDialog(R.string.are_you_sure_title,R.string.are_you_sure){
+                    //Reset nav stack
+                    val navController = findNavController(nav_host_fragment.id)
+                    val navHostFragment = supportFragmentManager.findFragmentById(nav_host_fragment.id) as NavHostFragment
+                    val inflater = navHostFragment.navController.navInflater
+                    val graph = inflater.inflate(R.navigation.nav_graph)
+                    graph.startDestination = R.id.loginFragment
+                    navController.graph = graph
+                }
+                return true
+            }
             R.id.action_profile -> {
                 Navigation.findNavController(this,nav_host_fragment.id).navigate(R.id.personalAreaFragment)
                 return true
