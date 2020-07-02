@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         stopKoin()
+
         super.onDestroy()
     }
 
@@ -98,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     val repositoryModule = module {
         single { UserRepository(get(), get()) }
-        single { RetroRepository(get()) }
+        single { RetroRepository(get(), get()) }
     }
 
     val vmModule = module {
@@ -107,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         viewModel { PersistedViewModel(get()) }
         viewModel { PersonalAreaViewModel(get(),get()) }
         viewModel { UserDataViewModel(get()) }
+        viewModel { PersistedRetroViewModel(get(), get()) }
     }
 
     val serviceModule = module {
@@ -126,6 +128,7 @@ class MainActivity : AppCompatActivity() {
                 .build()
         }
         single { get<AppDatabase>().userDao() }
+        single { get<AppDatabase>().retroDao() }
     }
 
     val retrofitModule = module {

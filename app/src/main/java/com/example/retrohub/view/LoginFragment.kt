@@ -68,7 +68,9 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
 
     private fun setPersistedUser(){
         persistedVM.liveData.observe(viewLifecycleOwner,::saveUser)
-        GlobalScope.launch(Dispatchers.IO) { persistedVM.setPersistedUser(username) }
+        GlobalScope.launch(Dispatchers.IO) {
+            persistedVM.setPersistedUser(username)
+        }
     }
 
     private fun saveUser(result :Pair<Boolean, Map<String,String>>){
