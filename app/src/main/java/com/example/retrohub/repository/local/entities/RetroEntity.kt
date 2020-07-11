@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken
 @Entity
 data class RetroEntity(
     @PrimaryKey val username: String,
+    @ColumnInfo(name = "title") val title: String?,
     @ColumnInfo(name = "type") val type: String?,
     @ColumnInfo(name = "subtype") val subtype: String?,
     @ColumnInfo(name = "date") val date: String?,
@@ -24,8 +25,6 @@ class StringListMapConverter {
     }
 
     @TypeConverter
-    fun fromStringMap(map: Map<String, List<String>>): String {
-        val gson = Gson()
-        return gson.toJson(map)
-    }
+    fun fromStringMap(map: Map<String, List<String>>) = Gson().toJson(map)
+
 }

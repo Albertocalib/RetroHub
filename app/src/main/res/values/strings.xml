@@ -63,7 +63,8 @@
     <string name="are_you_sure">¿Estás seguro de querer cerrar la sesión?</string>
     <string name="are_you_sure_title">Salir</string>
 
-    <!--Create retro -->
+    <!-- Create retro -->
+    <!-- Type selection -->
     <string name="choose_type">Elige el tipo de retrospectivas que vas a realizar:</string>
     <string name="type_release">Fin de release</string>
     <string name="type_sprint">Fin de sprint</string>
@@ -75,4 +76,10 @@
     <string name="fourl">4Ls</string>
     <string name="fast_and_furious">Fast and Furious</string>
     <string name="next_step">Continuar</string>
+    <!-- Title screen -->
+    <string name="title_view">¿Cómo quieres llamar a tu retrospectiva?</string>
+    <string name="title_view_toolbar">Título</string>
+    <string name="input_label_title">Título de la retrospectiva</string>
+    <string name="empty_error_message">El título de la retrospectiva no puede estar vacío</string>
+
 </resources>

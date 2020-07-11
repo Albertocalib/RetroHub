@@ -3,6 +3,7 @@ package com.example.retrohub.repository.local.daos
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.retrohub.repository.local.entities.RetroEntity
 import com.example.retrohub.repository.local.entities.UserEntity
 
@@ -17,5 +18,8 @@ interface RetroDAO {
 
     @Query("DELETE FROM retroentity")
     suspend fun delete()
+
+    @Update
+    suspend fun update(retro: RetroEntity)
 
 }

@@ -52,7 +52,7 @@ class SelectionTypeFragment : MainActivity.RetroHubFragment(R.layout.fragment_se
         when(state){
             State.READY -> hideLoading()
             State.SAVING -> showLoading()
-            State.SAVED -> Toast.makeText(requireContext(),"GUARDADO", Toast.LENGTH_SHORT).show()
+            State.SAVED -> findNavController().navigate(R.id.titleRetroFragment)
             State.ERROR -> showDialog(R.string.error_message_title,R.string.error_message_service,R.string.accept_button){ }
         }
     }

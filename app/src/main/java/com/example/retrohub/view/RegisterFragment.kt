@@ -1,6 +1,7 @@
 package com.example.retrohub.view
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.EditText
@@ -28,9 +29,11 @@ class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_registe
 
     override fun getToolbarTitle() = "Crear cuenta"
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().toolbar.hideOverflowMenu()
+        (requireActivity() as MainActivity).showMenu = false
         requireActivity().toolbar.title = getString(R.string.register_toolbar)
         save_button.setOnClickListener {
             validate()

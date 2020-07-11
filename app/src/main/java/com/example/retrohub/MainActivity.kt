@@ -25,6 +25,7 @@ import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.local.AppDatabase
 import com.example.retrohub.service.RetrospectiveService
 import com.example.retrohub.service.UserService
+import com.example.retrohub.view.RegisterFragment
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
@@ -57,6 +58,12 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    var showMenu = true
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        return super.onPrepareOptionsMenu(menu) && showMenu
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -163,6 +170,7 @@ class MainActivity : AppCompatActivity() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
             view.setOnClickListener { hideKeyboard() }
+            (requireActivity() as MainActivity).showMenu = true
             requireActivity().toolbar.isVisible = true
             requireActivity().toolbar.title = getToolbarTitle()
             if (Build.VERSION.SDK_INT >= 21) {

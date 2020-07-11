@@ -27,6 +27,7 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
         mutableState.value = State.SAVING
         viewModelScope.launch {
             val retro = Retro(userRepository.getPersistedUser().username,
+                "",
                 type,
                 subtype,
                 Calendar.getInstance().toFormattedString(),
@@ -35,6 +36,24 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
             mutableState.value = State.SAVED
         }
     }
+
+    fun updateRetro(title: String){
+        if(title.isBlank()){
+            mutableState.value = State.ERROR
+            return;
+        }
+        mutableState.value = State.SAVING
+        viewModelScope.launch {
+            retroRepository.updatePersistedRetro(
+                retroRepository.getPersistedRetro().apply {
+                    this.title
+                }
+            )
+            mutableState.value = State.SAVED
+        }
+    }
+
+
 }
 
 enum class State{
@@ -46,4 +65,4 @@ enum class State{
 
 
 private fun Retro.createEntity() =
-    RetroEntity( username, type, subtype, date, data )
+    RetroEntity( username, title, type, subtype, date, data )

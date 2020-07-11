@@ -10,6 +10,13 @@ class RetroRepository(private val service: RetrospectiveService, private val ret
 
     fun getAllRetrosByUser(username: String) = service.getAllRetrosByUser(username)
 
-    suspend fun savePersistedRetro(retro: RetroEntity) = retroDAO.insert(retro)
+    suspend fun savePersistedRetro(retro: RetroEntity) {
+        retroDAO.delete()
+        retroDAO.insert(retro)
+    }
+
+    suspend fun updatePersistedRetro(retro: RetroEntity) = retroDAO.update(retro)
+
+    suspend fun getPersistedRetro() = retroDAO.getPersistedRetro()
 }
 

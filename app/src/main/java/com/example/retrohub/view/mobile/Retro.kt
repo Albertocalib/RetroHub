@@ -6,6 +6,7 @@ import com.example.retrohub.R
 
 data class Retro(
     val username: String,
+    val title: String,
     val type: String,
     val subtype: String,
     val date: String,
@@ -42,6 +43,7 @@ enum class RetroType(val title: String) {
 
 private fun create(
     username: String,
+    title: String,
     type: RetroType,
     date: String,
     data: List<List<String>>,
@@ -49,6 +51,7 @@ private fun create(
 ) =
     Retro(
         username,
+        title,
         type.title,
         subtype.title,
         date,
