@@ -7,10 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.retrohub.repository.RetroRepository
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.data.RetroDTO
-import com.example.retrohub.repository.data.UserDTO
 import com.example.retrohub.view.mobile.Retro
-import com.example.retrohub.view.mobile.User
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Response
 import java.text.SimpleDateFormat
@@ -39,9 +39,12 @@ class PersonalAreaViewModel(private val retroRepository: RetroRepository, privat
     fun getNumberOfRetrospectives(){
         if(retroList.value.isNullOrEmpty()){
             viewModelScope.launch {
-                mutableuserName.value = userRepository.getPersistedUser().username
-                retroRepository.getAllRetrosByUser(mutableuserName.value?:"").enqueue(this@PersonalAreaViewModel)
-                userRepository.getUserData(mutableuserName.value?:"")
+                var name = ""
+                withContext(Dispatchers.IO) {
+                    name = userRepository.getPersistedUser().username
+                }
+                mutableuserName.value = name
+                retroRepository.getAllRetrosByUser(name).enqueue(this@PersonalAreaViewModel)
             }
         }
     }

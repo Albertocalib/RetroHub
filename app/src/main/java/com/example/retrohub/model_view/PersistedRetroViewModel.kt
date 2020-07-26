@@ -9,9 +9,9 @@ import com.example.retrohub.repository.RetroRepository
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.local.entities.RetroEntity
 import com.example.retrohub.view.mobile.Retro
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Response
+import kotlinx.coroutines.withContext
 import java.util.*
 
 
@@ -26,7 +26,13 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
     fun saveRetro(type: String, subtype: String){
         mutableState.value = State.SAVING
         viewModelScope.launch {
-            val retro = Retro(userRepository.getPersistedUser().username,
+            var name = ""
+            withContext(Dispatchers.IO) {
+                name = userRepository.getPersistedUser().username
+
+            }
+            val retro = Retro(
+                name,
                 "",
                 type,
                 subtype,
@@ -40,15 +46,16 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
     fun updateRetro(title: String){
         if(title.isBlank()){
             mutableState.value = State.ERROR
-            return;
+            return
         }
         mutableState.value = State.SAVING
         viewModelScope.launch {
-            retroRepository.updatePersistedRetro(
-                retroRepository.getPersistedRetro().apply {
+            withContext(Dispatchers.IO) {
+                val retro = retroRepository.getPersistedRetro().apply {
                     this.title
                 }
-            )
+                retroRepository.updatePersistedRetro(retro)
+            }
             mutableState.value = State.SAVED
         }
     }
