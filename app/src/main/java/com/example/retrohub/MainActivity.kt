@@ -2,19 +2,17 @@ package com.example.retrohub
 
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.get
 import androidx.room.Room
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
@@ -25,10 +23,8 @@ import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.local.AppDatabase
 import com.example.retrohub.service.RetrospectiveService
 import com.example.retrohub.service.UserService
-import com.example.retrohub.view.RegisterFragment
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
@@ -152,7 +148,7 @@ class MainActivity : AppCompatActivity() {
 
         fun provideRetrofit(factory: Gson, client: OkHttpClient): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://192.168.1.137:8081")
+                .baseUrl("http://192.168.1.135:8081")
                 .addConverterFactory(GsonConverterFactory.create(factory))
                 .client(client)
                 .build()
@@ -171,8 +167,8 @@ class MainActivity : AppCompatActivity() {
             super.onViewCreated(view, savedInstanceState)
             view.setOnClickListener { hideKeyboard() }
             (requireActivity() as MainActivity).showMenu = true
-            requireActivity().toolbar.isVisible = true
-            requireActivity().toolbar.title = getToolbarTitle()
+            requireActivity().toolbar?.isVisible = true
+            requireActivity().toolbar?.title = getToolbarTitle()
             if (Build.VERSION.SDK_INT >= 21) {
                 val window = requireActivity().window
                 window.statusBarColor = getColor(R.color.colorPrimary)

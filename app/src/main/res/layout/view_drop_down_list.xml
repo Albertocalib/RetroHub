@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:id="@+id/fragment_container_selection_type">
+
+    <View
+        android:id="@+id/bg_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/xs_margin"
+        android:background="@drawable/bg_title_drop_down_list"
+        app:layout_constraintTop_toTopOf="@id/title_field"
+        app:layout_constraintBottom_toBottomOf="@id/title_field"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/icon_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="@color/black_secondary"
+        app:layout_constraintBottom_toBottomOf="@id/title_field"
+        app:layout_constraintEnd_toEndOf="@id/bg_title"
+        app:layout_constraintTop_toTopOf="@id/title_field"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@drawable/arrow_drop_down" />
+
+    <TextView
+        android:id="@+id/title_field"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="@dimen/s_margin"
+        android:textColor="@color/black_secondary"
+        app:layout_constraintEnd_toEndOf="@+id/bg_title"
+        app:layout_constraintStart_toStartOf="@id/bg_title"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="FURIOUS" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="@dimen/xs_margin"
+        android:layout_marginStart="@dimen/xs_margin"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/bg_title"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

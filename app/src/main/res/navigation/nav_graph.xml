@@ -34,4 +34,9 @@
         android:name="com.example.retrohub.view.TitleRetroFragment"
         android:label="Título"/>
 
+    <fragment
+        android:id="@+id/fillRetroFragment"
+        android:name="com.example.retrohub.view.FillRetroInfoFragment"
+        android:label="Rellena la retrospectiva" />
+
 </navigation>

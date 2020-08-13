@@ -9,6 +9,7 @@ import com.example.retrohub.repository.RetroRepository
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.local.entities.RetroEntity
 import com.example.retrohub.view.mobile.Retro
+import com.example.retrohub.view.mobile.RetroSubTypes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -22,6 +23,11 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
     val state: LiveData<State>
         get() = mutableState
 
+
+    private val subtype = MutableLiveData<RetroSubTypes>()
+
+    val type: LiveData<RetroSubTypes>
+        get() = subtype
 
     fun saveRetro(type: String, subtype: String){
         mutableState.value = State.SAVING
@@ -43,7 +49,7 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
         }
     }
 
-    fun updateRetro(title: String){
+    fun updateRetro(title: String) {
         if(title.isBlank()){
             mutableState.value = State.ERROR
             return
@@ -52,13 +58,34 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val retro = retroRepository.getPersistedRetro().apply {
-                    this.title
+                    this.title = title
                 }
                 retroRepository.updatePersistedRetro(retro)
             }
             mutableState.value = State.SAVED
         }
     }
+
+    fun updateInfoRetro(info: MutableMap<String, MutableList<String>>) {
+        mutableState.value = State.SAVING
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val retro = retroRepository.getPersistedRetro().apply {
+                    this.data = info
+                }
+                retroRepository.updatePersistedRetro(retro)
+            }
+            mutableState.value = State.SAVED
+        }
+    }
+
+    fun getTypeRetro() = viewModelScope.launch {
+        subtype.value = withContext(Dispatchers.IO) {
+            val subtype = retroRepository.getPersistedRetro().subtype
+            RetroSubTypes.values().first { it.title == subtype }
+        }
+    }
+
 
 
 }

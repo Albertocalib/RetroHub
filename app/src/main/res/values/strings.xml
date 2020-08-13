@@ -5,6 +5,9 @@
     <string name="work_in_progress">Estamos trabajando en ello</string>
     <string name="empty_message">¡Ups! Parece que aún no tienes nada.</string>
 
+    <!-- Default values -->
+    <string name="large_text">La Torralba, que lo supo, se fue tras él y seguíale a pie y descalza desde lejos, con un bordón en la mano y con unas alforjas al cuello, donde llevaba, según es fama, un pedazo de espejo y otro de un peine y no sé qué botecillo de mudas para la cara; mas llevase lo que llevase, que yo no me quiero meter ahora en averiguallo, solo diré que dicen que el pastor llegó con su ganado a pasar el río Guadiana, y en aquella sazón iba crecido y casi fuera de madre, y por la parte que llegó no había barca ni barco, ni quien le pasase a él ni a su ganado de la otra parte, de lo que se congojó mucho porque veía que la Torralba venía ya muy cerca y le había de dar mucha pesadumbre con sus ruegos y lágrimas; mas tanto anduvo mirando, que vio un pescador que tenía junto a sí un barco, tan pequeño, que solamente podían caber en él una persona y una cabra; y, con todo esto, le habló y concertó con él que le pasase a él y a trecientas cabras que llevaba. Entró el pescador en el barco y pasó una cabra; volvió y pasó otra; tornó a volver y tornó a pasar otra.» </string>
+
     <!-- Main view -->
     <string name="new_retro_button">Crear nueva retrospectiva</string>
 
@@ -81,5 +84,9 @@
     <string name="title_view_toolbar">Título</string>
     <string name="input_label_title">Título de la retrospectiva</string>
     <string name="empty_error_message">El título de la retrospectiva no puede estar vacío</string>
+    <!--Fill list info -->
+    <string name="retro_card_description">Descripción</string>
+    <string name="retro_field">Sección</string>
+    <string name="retro_empty_error">¡Ups! Aún no ha rellenado nada</string>
 
 </resources>
