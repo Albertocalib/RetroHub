@@ -86,12 +86,11 @@ class FillRetroInfoFragment : MainActivity.RetroHubFragment(R.layout.fragment_fi
     private fun nextStep() = findNavController().navigate(
         when (subtype) {
             RetroSubTypes.STARFISH -> R.id.starfishRetroFragment
-            RetroSubTypes.FAST_AND_FURIOUS -> R.id.fourLsRetroFragment
+            RetroSubTypes.FAST_AND_FURIOUS -> R.id.fastAndFuriousFragment
             RetroSubTypes.FOUR_L -> R.id.fourLsRetroFragment
             RetroSubTypes.SAILBOAT -> R.id.sailboatRetroFragment
-            RetroSubTypes.SEMAPHORE -> R.id.fourLsRetroFragment
-            RetroSubTypes.THREE_LITTLE_PIGS -> R.id.fourLsRetroFragment
-
+            RetroSubTypes.SEMAPHORE -> R.id.semaphoreRetroFragment
+            RetroSubTypes.THREE_LITTLE_PIGS -> R.id.threeLittleRetroFragment
         }
     )
 

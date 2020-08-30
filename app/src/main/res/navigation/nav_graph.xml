@@ -52,4 +52,16 @@
         android:name="com.example.retrohub.view.StarfishConfirmFragment"
         android:label="Starfish"/>
 
+    <fragment android:id="@+id/semaphoreRetroFragment"
+        android:name="com.example.retrohub.view.SemaphoreConfirmFragment"
+        android:label="semaphore"/>
+
+    <fragment android:id="@+id/threeLittleRetroFragment"
+        android:name="com.example.retrohub.view.ThreeLittlePigsConfirmFragment"
+        android:label="three-little-pigs"/>
+
+    <fragment android:id="@+id/fastAndFuriousFragment"
+        android:name="com.example.retrohub.view.FastAndFuriousConfirmFragment"
+        android:label="fast-and-furious"/>
+
 </navigation>

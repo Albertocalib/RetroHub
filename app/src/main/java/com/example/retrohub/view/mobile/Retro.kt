@@ -24,7 +24,7 @@ enum class RetroSubTypes(val title: String, val fields: List<String>, @StringRes
     SAILBOAT("SAILBOAT", listOf("Isla", "Viento", "Rocas", "Ancla"), R.string.sailboat),
     FAST_AND_FURIOUS(
         "FAST_AND_FURIOUS",
-        listOf("Fast", "Furious", "FunZone", "Boxes"),
+        listOf("Fast", "Fun zone", "Furious", "Boxes"),
         R.string.fast_and_furious
     ),
     THREE_LITTLE_PIGS(

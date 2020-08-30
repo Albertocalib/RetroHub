@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.retrohub.MainActivity
@@ -33,11 +34,10 @@ class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_registe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as MainActivity).showMenu = false
-        requireActivity().toolbar.title = getString(R.string.register_toolbar)
         save_button.setOnClickListener {
             validate()
         }
+        requireActivity().toolbar.isVisible = false
         vm.state.observe(viewLifecycleOwner, ::onStateChanged)
     }
 

@@ -23,7 +23,6 @@ import org.koin.android.ext.android.inject
 
 abstract class BaseConfirmFragment: MainActivity.RetroHubFragment(R.layout.four_ls_confirm_view) {
 
-    abstract fun numberOfColumns(): Int
     protected lateinit var items: List<Card>
 
     protected val viewModel: PersistedRetroViewModel by inject()
@@ -38,7 +37,7 @@ abstract class BaseConfirmFragment: MainActivity.RetroHubFragment(R.layout.four_
         viewModel.retro.observe(viewLifecycleOwner) {
             setItems(it)
             with(retro_grid) {
-                layoutManager = GridLayoutManager(requireContext(), numberOfColumns())
+                layoutManager = GridLayoutManager(requireContext(), 2)
                 adapter = GridItemAdapter(items)
             }
         }
@@ -52,7 +51,7 @@ abstract class BaseConfirmFragment: MainActivity.RetroHubFragment(R.layout.four_
         val images = getDrawables()
 
         items = retro.data.keys.mapIndexed { index, s ->
-            Card(images[index], colors[index], (retro.data[s] ?: emptyList()).sortedBy { it },s,rightImages[index])
+            Card(images[index], colors[index], (retro.data[s] ?: emptyList()).sortedByDescending { it.length },s,rightImages[index])
         }
     }
 
@@ -110,8 +109,6 @@ class FourLsConfirmFragment: BaseConfirmFragment() {
 
     override fun getToolbarTitle() = getString(R.string.fourl)
 
-    override fun numberOfColumns() = 2
-
     override fun getColors() = listOf(
         R.color.lime_green ,R.color.light_yellow, R.color.light_red,R.color.colorPrimaryExtraLight
     )
@@ -127,8 +124,6 @@ class FourLsConfirmFragment: BaseConfirmFragment() {
 class SailboatConfirmFragment: BaseConfirmFragment() {
 
     override fun getToolbarTitle() = getString(R.string.sailboat)
-
-    override fun numberOfColumns() = 2
 
     override fun getColors() = listOf(
         R.color.colorPrimaryExtraLight ,R.color.lime_green, R.color.light_yellow,R.color.light_red
@@ -146,8 +141,6 @@ class StarfishConfirmFragment: BaseConfirmFragment() {
 
     override fun getToolbarTitle() = getString(R.string.starfish)
 
-    override fun numberOfColumns() = 2
-
     override fun getColors() = listOf(
         R.color.lime_green ,R.color.green_light, R.color.light_red,R.color.light_yellow,R.color.light_purple
     )
@@ -159,4 +152,40 @@ class StarfishConfirmFragment: BaseConfirmFragment() {
         R.drawable.ic_dislike, R.drawable.ic_less,
         R.drawable.ic_start
     )
+}
+
+class SemaphoreConfirmFragment: BaseConfirmFragment() {
+
+    override fun getColors() = listOf(R.color.light_red,R.color.light_yellow,R.color.lime_green)
+
+    override fun getDrawables() = listOf(R.drawable.ic_semaphore_red,R.drawable.ic_semaphore_yellow, R.drawable.ic_semaphore_green)
+
+    override fun getPositions() = List(3) { true }
+
+    override fun getToolbarTitle() = getString(R.string.semaphore)
+
+}
+
+class ThreeLittlePigsConfirmFragment : BaseConfirmFragment() {
+
+    override fun getColors() = listOf(R.color.light_red,R.color.light_yellow,R.color.lime_green)
+
+    override fun getDrawables() = listOf(R.drawable.ic_straw,R.drawable.ic_wood, R.drawable.ic_bricks)
+
+    override fun getPositions() = List(3) { true }
+
+    override fun getToolbarTitle() = getString(R.string.semaphore)
+
+}
+
+class FastAndFuriousConfirmFragment : BaseConfirmFragment() {
+
+    override fun getColors() = listOf(R.color.lime_green,R.color.colorPrimaryExtraLight,R.color.light_red,R.color.light_yellow)
+
+    override fun getDrawables() = listOf(R.drawable.ic_fast,R.drawable.ic_fun_zone, R.drawable.ic_furious, R.drawable.ic_boxes)
+
+    override fun getPositions() = listOf(true,false,true,false)
+
+    override fun getToolbarTitle() = getString(R.string.fast_and_furious)
+
 }

@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
@@ -54,12 +56,6 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
-    }
-
-    var showMenu = true
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        return super.onPrepareOptionsMenu(menu) && showMenu
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -166,8 +162,9 @@ class MainActivity : AppCompatActivity() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
-            view.setOnClickListener { hideKeyboard() }
-            (requireActivity() as MainActivity).showMenu = true
+            view.setOnClickListener {
+                hideKeyboard()
+            }
             requireActivity().toolbar?.isVisible = true
             requireActivity().toolbar?.title = getToolbarTitle()
             if (Build.VERSION.SDK_INT >= 21) {
