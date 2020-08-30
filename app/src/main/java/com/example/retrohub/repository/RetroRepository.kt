@@ -18,5 +18,7 @@ class RetroRepository(private val service: RetrospectiveService, private val ret
     suspend fun updatePersistedRetro(retro: RetroEntity) = retroDAO.update(retro)
 
     suspend fun getPersistedRetro() = retroDAO.getPersistedRetro()
+
+    suspend fun deleteAll() = retroDAO.delete()
 }
 

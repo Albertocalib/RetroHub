@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrohub.repository.UserRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
@@ -18,10 +19,14 @@ class PersistedViewModel(private val userRepository: UserRepository): ViewModel(
     val liveData: LiveData<Pair<Boolean, Map<String,String>>>
         get() = mutableLiveData
 
-    suspend fun setPersistedUser(userName: String) = userRepository.getUser(userName).enqueue(this)
+    fun setPersistedUser(userName: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.getUser(userName).enqueue(this@PersistedViewModel)
+        }
+    }
 
     override fun onFailure(call: Call<Map<String, String>>, t: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mutableLiveData.value = false to HashMap()
     }
 
     override fun onResponse(call: Call<Map<String, String>>, response: Response<Map<String, String>>) {

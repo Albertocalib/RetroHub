@@ -13,6 +13,7 @@ import com.example.retrohub.R
 import com.example.retrohub.extensions.*
 import com.example.retrohub.model_view.LoginState
 import com.example.retrohub.model_view.LoginViewModel
+import com.example.retrohub.model_view.PersistedRetroViewModel
 import com.example.retrohub.model_view.PersistedViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login_view.*
@@ -26,6 +27,7 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
 
     private val vm: LoginViewModel by inject()
     private val persistedVM: PersistedViewModel by inject()
+    protected val persistedRetroVM: PersistedRetroViewModel by inject()
 
     private val username: String
         get() = user_name_input.getString()
@@ -47,6 +49,7 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
         }
         hideLoading()
         vm.state.observe(viewLifecycleOwner, ::login)
+        persistedRetroVM.deleteAll()
         button_login.setOnClickListener {
             hideKeyboard()
             var failed = false
@@ -68,9 +71,7 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
 
     private fun setPersistedUser(){
         persistedVM.liveData.observe(viewLifecycleOwner,::saveUser)
-        GlobalScope.launch(Dispatchers.IO) {
-            persistedVM.setPersistedUser(username)
-        }
+        persistedVM.setPersistedUser(username)
     }
 
     private fun saveUser(result :Pair<Boolean, Map<String,String>>){

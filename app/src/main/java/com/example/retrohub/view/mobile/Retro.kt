@@ -2,6 +2,7 @@ package com.example.retrohub.view.mobile
 
 import androidx.annotation.StringRes
 import com.example.retrohub.R
+import com.example.retrohub.repository.local.entities.RetroEntity
 
 
 data class Retro(
@@ -17,10 +18,10 @@ enum class RetroSubTypes(val title: String, val fields: List<String>, @StringRes
 
     STARFISH(
         "STARFISH",
-        listOf("Seguir haciendo", "Hacer más", "Empezar a hacer", "Parar de hacer", "Hacer menos"),
-        R.string.starship
+        listOf("Seguir haciendo", "Hacer más", "Parar de hacer", "Hacer menos", "Empezar a hacer"),
+        R.string.starfish
     ),
-    SAILBOAT("SAILBOAT", listOf("Ancla", "Rocas", "Viento", "Isla"), R.string.sailboat),
+    SAILBOAT("SAILBOAT", listOf("Isla", "Viento", "Rocas", "Ancla"), R.string.sailboat),
     FAST_AND_FURIOUS(
         "FAST_AND_FURIOUS",
         listOf("Fast", "Furious", "FunZone", "Boxes"),
@@ -33,6 +34,7 @@ enum class RetroSubTypes(val title: String, val fields: List<String>, @StringRes
     ),
     SEMAPHORE("SEMAPHORE", listOf("Rojo", "Ámbar", "Verde"), R.string.semaphore),
     FOUR_L("4L", listOf("Liked", "Learned", "Lacked", "Longed for"), R.string.fourl)
+
 }
 
 enum class RetroType(val title: String) {
@@ -40,20 +42,11 @@ enum class RetroType(val title: String) {
     SPRINT("SPRINT")
 }
 
-
-private fun create(
-    username: String,
-    title: String,
-    type: RetroType,
-    date: String,
-    data: List<List<String>>,
-    subtype: RetroSubTypes
-) =
-    Retro(
-        username,
-        title,
-        type.title,
-        subtype.title,
-        date,
-        data.mapIndexed { index, it -> subtype.fields[index] to it }.toMap()
-    )
+fun createRetroFromEntity(entity: RetroEntity) = Retro(
+    entity.username,
+    entity.title?:"",
+    entity.type?:RetroType.SPRINT.title,
+    entity.subtype?:RetroSubTypes.STARFISH.title,
+    entity.date?:"",
+    entity.data
+)

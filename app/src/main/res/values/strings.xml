@@ -7,7 +7,7 @@
 
     <!-- Default values -->
     <string name="large_text">La Torralba, que lo supo, se fue tras él y seguíale a pie y descalza desde lejos, con un bordón en la mano y con unas alforjas al cuello, donde llevaba, según es fama, un pedazo de espejo y otro de un peine y no sé qué botecillo de mudas para la cara; mas llevase lo que llevase, que yo no me quiero meter ahora en averiguallo, solo diré que dicen que el pastor llegó con su ganado a pasar el río Guadiana, y en aquella sazón iba crecido y casi fuera de madre, y por la parte que llegó no había barca ni barco, ni quien le pasase a él ni a su ganado de la otra parte, de lo que se congojó mucho porque veía que la Torralba venía ya muy cerca y le había de dar mucha pesadumbre con sus ruegos y lágrimas; mas tanto anduvo mirando, que vio un pescador que tenía junto a sí un barco, tan pequeño, que solamente podían caber en él una persona y una cabra; y, con todo esto, le habló y concertó con él que le pasase a él y a trecientas cabras que llevaba. Entró el pescador en el barco y pasó una cabra; volvió y pasó otra; tornó a volver y tornó a pasar otra.» </string>
-
+    <string name="medium_text">La Torralba, que lo supo, se fue tras él y seguíale a pie y descalza desde lejos, con un bordón en la mano y con unas alforjas al cuello, donde llevaba, según es fama, un pedazo de espejo y otro de un peine y no sé</string>
     <!-- Main view -->
     <string name="new_retro_button">Crear nueva retrospectiva</string>
 
@@ -72,7 +72,7 @@
     <string name="type_release">Fin de release</string>
     <string name="type_sprint">Fin de sprint</string>
     <string name="choose_subtype">Elige el subtipo que prefieras:</string>
-    <string name="starship">Estrella de mar</string>
+    <string name="starfish">Estrella de mar</string>
     <string name="sailboat">Barco de vela</string>
     <string name="three_little_pigs">Los 3 cerditos</string>
     <string name="semaphore">Semáforo</string>
@@ -88,5 +88,7 @@
     <string name="retro_card_description">Descripción</string>
     <string name="retro_field">Sección</string>
     <string name="retro_empty_error">¡Ups! Aún no ha rellenado nada</string>
+    <!-- Retro preview -->
+    <string name="empty_field">No se ha añadido nada aún</string>
 
 </resources>

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrohub.MainActivity
@@ -36,8 +37,15 @@ class FillRetroInfoFragment : MainActivity.RetroHubFragment(R.layout.fragment_fi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.type.observe(viewLifecycleOwner) { subtype ->
+
+        viewModel.retro.observe(viewLifecycleOwner) { retro ->
+            subtype = RetroSubTypes.valueOf(retro.subtype)
             subtype.fields.forEach { info[it] = mutableListOf() }
+            if(!retro.data.isNullOrEmpty()) {
+                retro.data.keys.forEach {
+                    retro.data[it]?.let { it1 -> info[it]?.addAll(it1) }
+                }
+            }
             with(list_items) {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = ListAdapter(
@@ -48,7 +56,6 @@ class FillRetroInfoFragment : MainActivity.RetroHubFragment(R.layout.fragment_fi
             add_card_button.setOnClickListener {
                 newInstance(this, subtype.fields).show(parentFragmentManager, "AddRetroInfoDialog")
             }
-            this.subtype = subtype
         }
         next_step.setOnClickListener {
             if (info.any { it.value.isNotEmpty() }) {
@@ -63,7 +70,7 @@ class FillRetroInfoFragment : MainActivity.RetroHubFragment(R.layout.fragment_fi
                         }
                         State.SAVED -> {
                             setLoadingVisibility(false)
-                            Toast.makeText(requireContext(), "Guardado", Toast.LENGTH_LONG).show()
+                            nextStep()
                         }
                     }
                 }
@@ -73,10 +80,21 @@ class FillRetroInfoFragment : MainActivity.RetroHubFragment(R.layout.fragment_fi
                     .show()
             }
         }
-        viewModel.getTypeRetro()
-
-
+        viewModel.getRetro()
     }
+
+    private fun nextStep() = findNavController().navigate(
+        when (subtype) {
+            RetroSubTypes.STARFISH -> R.id.starfishRetroFragment
+            RetroSubTypes.FAST_AND_FURIOUS -> R.id.fourLsRetroFragment
+            RetroSubTypes.FOUR_L -> R.id.fourLsRetroFragment
+            RetroSubTypes.SAILBOAT -> R.id.sailboatRetroFragment
+            RetroSubTypes.SEMAPHORE -> R.id.fourLsRetroFragment
+            RetroSubTypes.THREE_LITTLE_PIGS -> R.id.fourLsRetroFragment
+
+        }
+    )
+
 
     private fun setLoadingVisibility(loading: Boolean) {
         loading_title_view.isVisible = loading
@@ -127,7 +145,6 @@ class ListAdapter(val items: List<RetroInfo>, val listener: ViewHolder.Action) :
         }
 
         fun bind(item: RetroInfo, listener: SublistAdapter.ViewHolder.Action) = with(itemView) {
-            icon_arrow.isSelected = true
             list.isVisible = icon_arrow.isSelected
             title_field.setOnClickListener {
                 icon_arrow.isSelected = !icon_arrow.isSelected

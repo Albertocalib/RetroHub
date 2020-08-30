@@ -39,4 +39,17 @@
         android:name="com.example.retrohub.view.FillRetroInfoFragment"
         android:label="Rellena la retrospectiva" />
 
+    <fragment
+        android:id="@+id/fourLsRetroFragment"
+        android:name="com.example.retrohub.view.FourLsConfirmFragment"
+        android:label="4Ls" />
+
+    <fragment android:id="@+id/sailboatRetroFragment"
+        android:name="com.example.retrohub.view.SailboatConfirmFragment"
+        android:label="Sailboat"/>
+
+    <fragment android:id="@+id/starfishRetroFragment"
+        android:name="com.example.retrohub.view.StarfishConfirmFragment"
+        android:label="Starfish"/>
+
 </navigation>

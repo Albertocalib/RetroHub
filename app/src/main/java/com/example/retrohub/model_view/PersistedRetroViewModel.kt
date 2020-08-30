@@ -10,6 +10,7 @@ import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.local.entities.RetroEntity
 import com.example.retrohub.view.mobile.Retro
 import com.example.retrohub.view.mobile.RetroSubTypes
+import com.example.retrohub.view.mobile.createRetroFromEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -24,10 +25,10 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
         get() = mutableState
 
 
-    private val subtype = MutableLiveData<RetroSubTypes>()
+    private val retroMutable = MutableLiveData<Retro>()
 
-    val type: LiveData<RetroSubTypes>
-        get() = subtype
+    val retro: LiveData<Retro>
+        get() = retroMutable
 
     fun saveRetro(type: String, subtype: String){
         mutableState.value = State.SAVING
@@ -46,6 +47,14 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
                 emptyMap())
             retroRepository.savePersistedRetro(retro.createEntity())
             mutableState.value = State.SAVED
+        }
+    }
+
+    fun deleteAll() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                retroRepository.deleteAll()
+            }
         }
     }
 
@@ -79,14 +88,14 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
         }
     }
 
-    fun getTypeRetro() = viewModelScope.launch {
-        subtype.value = withContext(Dispatchers.IO) {
-            val subtype = retroRepository.getPersistedRetro().subtype
-            RetroSubTypes.values().first { it.title == subtype }
+    fun getRetro() {
+        viewModelScope.launch {
+            val entity = withContext(Dispatchers.IO) {
+                retroRepository.getPersistedRetro()
+            }
+            retroMutable.value = createRetroFromEntity(entity)
         }
     }
-
-
 
 }
 

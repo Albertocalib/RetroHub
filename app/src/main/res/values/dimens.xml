@@ -1,6 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
 
+    <dimen name="xxs_text_size">8dp</dimen>
+    <dimen name="xs_text_size">10dp</dimen>
     <dimen name="s_text_size">12dp</dimen>
     <dimen name="m_text_size">16dp</dimen>
     <dimen name="l_text_size">20dp</dimen>
@@ -10,7 +12,9 @@
 
     <dimen name="button_new_height">40dp</dimen>
 
+    <dimen name="xxs_margin">2dp</dimen>
     <dimen name="xs_margin">5dp</dimen>
+    <dimen name="s2_margin">7dp</dimen>
     <dimen name="s_margin">10dp</dimen>
     <dimen name="m_margin">15dp</dimen>
     <dimen name="l_margin">20dp</dimen>
@@ -19,6 +23,7 @@
 
     <dimen name="icon_large">70dp</dimen>
     <dimen name="icon_medium">50dp</dimen>
+    <dimen name="icon_small2">40dp</dimen>
     <dimen name="icon_small">30dp</dimen>
     <dimen name="icon_xsmall">20dp</dimen>
 

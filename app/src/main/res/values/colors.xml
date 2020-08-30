@@ -10,7 +10,9 @@
     <color name="lime_green">#AFFFBC</color>
     <color name="green_light">#E7FFC4</color>
     <color name="green_yellow">#F2FFAF</color>
-    <color name="ocean_blue">#BCAFFF</color>
+    <color name="light_yellow">#FFF89D</color>
+    <color name="light_purple">#D7CFFF</color>
+    <color name="light_red">#FF8080</color>
 
     <!-- Text color -->
     <color name="white">#FFFFFF</color>
