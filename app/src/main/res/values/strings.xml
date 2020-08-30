@@ -90,5 +90,8 @@
     <string name="retro_empty_error">¡Ups! Aún no ha rellenado nada</string>
     <!-- Retro preview -->
     <string name="empty_field">No se ha añadido nada aún</string>
+    <!--Retro saved -->
+    <string name="retro_ok">¡Tu retrospectiva se ha guardado con éxito!</string>
+    <string name="retro_error">Ups... Parece que ha habido un problema, compruebe su conexión e inténtelo de nuevo más tarde.</string>
 
 </resources>

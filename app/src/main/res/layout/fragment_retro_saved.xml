@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_container_four_ls"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/icon_result"
+        android:layout_width="@dimen/icon_large"
+        android:layout_height="@dimen/icon_large"
+        app:layout_constraintVertical_bias="0.30"
+        app:layout_constraintBottom_toTopOf="@+id/next_step"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/result_text"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/s_margin"
+        android:layout_marginEnd="@dimen/l_margin"
+        android:layout_marginStart="@dimen/l_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_result" />
+
+
+    <Button
+        android:id="@+id/next_step"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/next_step"
+        android:layout_marginStart="@dimen/l_margin"
+        android:layout_marginEnd="@dimen/l_margin"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <include layout="@layout/view_loading"
+        android:id="@+id/loading_view"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrohub.MainActivity
@@ -16,12 +17,12 @@ import com.example.retrohub.R
 import com.example.retrohub.extensions.inflate
 import com.example.retrohub.model_view.PersistedRetroViewModel
 import com.example.retrohub.view.mobile.Retro
-import kotlinx.android.synthetic.main.four_ls_confirm_view.*
+import kotlinx.android.synthetic.main.retro_confirm_view.*
 import kotlinx.android.synthetic.main.view_card_grid.view.*
 import kotlinx.android.synthetic.main.view_grid_item.view.*
 import org.koin.android.ext.android.inject
 
-abstract class BaseConfirmFragment: MainActivity.RetroHubFragment(R.layout.four_ls_confirm_view) {
+abstract class BaseConfirmFragment: MainActivity.RetroHubFragment(R.layout.retro_confirm_view) {
 
     protected lateinit var items: List<Card>
 
@@ -42,7 +43,9 @@ abstract class BaseConfirmFragment: MainActivity.RetroHubFragment(R.layout.four_
             }
         }
         viewModel.getRetro()
-
+        next_step.setOnClickListener {
+            findNavController().navigate(R.id.savedRetroFragment)
+        }
     }
 
     private fun setItems(retro: Retro) {

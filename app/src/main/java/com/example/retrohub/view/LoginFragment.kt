@@ -17,9 +17,6 @@ import com.example.retrohub.model_view.PersistedRetroViewModel
 import com.example.retrohub.model_view.PersistedViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login_view.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 

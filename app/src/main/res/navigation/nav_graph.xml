@@ -64,4 +64,8 @@
         android:name="com.example.retrohub.view.FastAndFuriousConfirmFragment"
         android:label="fast-and-furious"/>
 
+    <fragment android:id="@+id/savedRetroFragment"
+        android:name="com.example.retrohub.view.SavedRetroFragment"
+        android:label="saved-retro-fragment"/>
+
 </navigation>

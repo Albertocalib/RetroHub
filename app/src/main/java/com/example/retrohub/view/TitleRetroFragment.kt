@@ -43,7 +43,6 @@ class TitleRetroFragment () : MainActivity.RetroHubFragment(R.layout.fragment_ti
     }
 
 
-
     private fun setLoadingVisibility(loading: Boolean) {
         loading_title_view.isVisible = loading
         input_view.isVisible = !loading
