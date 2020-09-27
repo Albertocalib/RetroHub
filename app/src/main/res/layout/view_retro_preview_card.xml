@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_container"
+    style="@style/CardView.Light"
+    android:layout_margin="@dimen/m_margin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/m_margin">
+
+        <ImageView
+            android:id="@+id/icon_retro"
+            android:padding="@dimen/m_margin"
+            android:layout_width="@dimen/icon_xlarge"
+            android:layout_height="@dimen/icon_xlarge"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/title_retro"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_marginStart="@dimen/m_margin"
+            android:textColor="@color/black_secondary"
+            tools:text="Sprint 17"
+            app:layout_constraintTop_toBottomOf="@id/icon_retro"/>
+
+        <TextView
+            android:id="@+id/date_retro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_marginStart="@dimen/m_margin"
+            android:textColor="@color/black_secondary"
+            tools:text="11/11/1998"
+            app:layout_constraintTop_toBottomOf="@id/title_retro"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

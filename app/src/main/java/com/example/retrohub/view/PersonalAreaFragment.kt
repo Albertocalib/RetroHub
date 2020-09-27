@@ -50,7 +50,7 @@ class PersonalAreaFragment : MainActivity.RetroHubFragment(R.layout.fragment_per
         } else {
             best_retro_name.text = list.groupingBy { it.subtype }
                 .eachCount()
-                .maxBy { it.value }
+                .maxByOrNull { it.value }
                 ?.key
         }
         loading_view.isVisible = false

@@ -10,6 +10,7 @@
         android:id="@+id/welcome_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,8 +19,16 @@
         android:layout_marginEnd="@dimen/m_margin"
         android:layout_marginTop="@dimen/m_margin"
         android:textColor="@color/black_secondary"
-        style="@style/TextAppearance.MaterialComponents.Headline4"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         tools:text="¡Hola Ana!"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/retro_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryLight"
+        android:layout_marginTop="@dimen/l_margin"
+        app:layout_constraintTop_toBottomOf="@id/welcome_text" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/empty_view"
@@ -40,17 +49,17 @@
 
     <TextView
         android:id="@+id/label_text_empty_view"
+        style="@style/mainTextAcent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/catamaran_medium"
+        android:paddingTop="@dimen/m_margin"
         android:text="@string/empty_message"
         android:textSize="@dimen/m_text_size"
-        android:paddingTop="@dimen/m_margin"
-        style="@style/mainTextAcent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
@@ -65,5 +74,7 @@
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
 
+    <include layout="@layout/view_loading"
+        android:id="@+id/loading_view"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

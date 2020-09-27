@@ -2,6 +2,7 @@ package com.example.retrohub.view.mobile
 
 import androidx.annotation.StringRes
 import com.example.retrohub.R
+import com.example.retrohub.repository.data.RetroDTO
 import com.example.retrohub.repository.local.entities.RetroEntity
 
 
@@ -49,4 +50,13 @@ fun createRetroFromEntity(entity: RetroEntity) = Retro(
     entity.subtype?:RetroSubTypes.STARFISH.title,
     entity.date?:"",
     entity.data
+)
+
+fun createRetroFromDTO(dto: RetroDTO) = Retro(
+    dto.username,
+    dto.title,
+    dto.type,
+    dto.subtype,
+    dto.date,
+    dto.data
 )
