@@ -1,9 +1,6 @@
 package com.example.retrohub.model_view
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.retrohub.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,6 +21,11 @@ class PersistedViewModel(private val userRepository: UserRepository): ViewModel(
             userRepository.getUser(userName).enqueue(this@PersistedViewModel)
         }
     }
+    fun getUserName() = liveData(Dispatchers.IO) {
+        val name = userRepository.getPersistedUser().firstName
+        emit(name)
+    }
+
 
     override fun onFailure(call: Call<Map<String, String>>, t: Throwable) {
         mutableLiveData.value = false to HashMap()

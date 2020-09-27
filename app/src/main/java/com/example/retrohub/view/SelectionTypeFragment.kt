@@ -3,7 +3,6 @@ package com.example.retrohub.view
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -16,9 +15,7 @@ import com.example.retrohub.extensions.inflate
 import com.example.retrohub.extensions.setVisibilityViews
 import com.example.retrohub.extensions.showDialog
 import com.example.retrohub.model_view.PersistedRetroViewModel
-import com.example.retrohub.model_view.PersistedViewModel
 import com.example.retrohub.model_view.State
-import com.example.retrohub.view.mobile.Retro
 import com.example.retrohub.view.mobile.RetroSubTypes
 import com.example.retrohub.view.mobile.RetroType
 import kotlinx.android.synthetic.main.fragment_selection_type.*

@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -14,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.example.retrohub.extensions.getColor
 import com.example.retrohub.extensions.hideKeyboard
@@ -36,6 +34,7 @@ import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -145,7 +144,7 @@ class MainActivity : AppCompatActivity() {
 
         fun provideRetrofit(factory: Gson, client: OkHttpClient): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://192.168.1.130:8081")
+                .baseUrl("http://192.168.1.133:8081")
                 .addConverterFactory(GsonConverterFactory.create(factory))
                 .client(client)
                 .build()

@@ -10,6 +10,7 @@
     <string name="medium_text">La Torralba, que lo supo, se fue tras él y seguíale a pie y descalza desde lejos, con un bordón en la mano y con unas alforjas al cuello, donde llevaba, según es fama, un pedazo de espejo y otro de un peine y no sé</string>
     <!-- Main view -->
     <string name="new_retro_button">Crear nueva retrospectiva</string>
+    <string name="welcome_message">¡Hola </string>
 
     <!-- Login -->
     <string name="user_label_edit_text">Nombre de usuario</string>

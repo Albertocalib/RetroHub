@@ -15,7 +15,7 @@ fun Fragment.showViews(views: List<View>) = setVisibilityViews(true,views)
 fun Fragment.getColor(@ColorRes color: Int) = resources.getColor(color)
 
 fun Fragment.showDialog(@StringRes title: Int, @StringRes message: Int, accept:()->Unit) {
-    MaterialAlertDialogBuilder(context)
+    MaterialAlertDialogBuilder(requireContext())
         .setTitle(title)
         .setMessage(message)
         .setNegativeButton(R.string.decline_button) { dialog, which ->
@@ -28,7 +28,7 @@ fun Fragment.showDialog(@StringRes title: Int, @StringRes message: Int, accept:(
 }
 
 fun Fragment.showDialog(@StringRes title: Int, @StringRes message: Int, @StringRes neutral: Int, action:()->Unit) {
-    MaterialAlertDialogBuilder(context)
+    MaterialAlertDialogBuilder(requireContext())
         .setTitle(title)
         .setMessage(message)
         .setNeutralButton(neutral) { dialog, which ->
