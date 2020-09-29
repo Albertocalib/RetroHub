@@ -41,6 +41,7 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
             val retro = Retro(
                 name,
                 "",
+                emptyList(),
                 type,
                 subtype,
                 Calendar.getInstance().toFormattedString(),
@@ -108,4 +109,4 @@ enum class State{
 
 
 private fun Retro.createEntity() =
-    RetroEntity( username, title, type, subtype, date, data )
+    RetroEntity( username, title, type, team, subtype, date, data )

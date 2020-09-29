@@ -81,6 +81,7 @@ class PersonalAreaViewModel(private val retroRepository: RetroRepository, privat
 fun fromDTO(retro: RetroDTO) = Retro(
     retro.username,
     retro.title,
+    retro.team,
     retro.type,
     retro.subtype,
     retro.date,

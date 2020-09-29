@@ -9,6 +9,7 @@ import com.example.retrohub.repository.local.entities.RetroEntity
 data class Retro(
     val username: String,
     val title: String,
+    val team: List<String>?,
     val type: String,
     val subtype: String,
     val date: String,
@@ -46,6 +47,7 @@ enum class RetroType(val title: String) {
 fun createRetroFromEntity(entity: RetroEntity) = Retro(
     entity.username,
     entity.title?:"",
+    entity.team?: emptyList(),
     entity.type?:RetroType.SPRINT.title,
     entity.subtype?:RetroSubTypes.STARFISH.title,
     entity.date?:"",
@@ -55,6 +57,7 @@ fun createRetroFromEntity(entity: RetroEntity) = Retro(
 fun createRetroFromDTO(dto: RetroDTO) = Retro(
     dto.username,
     dto.title,
+    dto.team,
     dto.type,
     dto.subtype,
     dto.date,

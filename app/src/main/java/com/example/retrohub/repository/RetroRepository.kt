@@ -27,6 +27,7 @@ class RetroRepository(private val service: RetrospectiveService, private val ret
         retro.username,
         retro.title?:"",
         retro.type?:"",
+        retro.team,
         retro.subtype?:"",
         retro.date?:Date().toString(),
         retro.data
