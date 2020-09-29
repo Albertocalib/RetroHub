@@ -77,6 +77,7 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
             findNavController().popBackStack(R.id.loginFragment,true)
             findNavController().navigate(R.id.mainFragment)
         }else{
+            hideLoading()
             showDialog(R.string.error_message_title,R.string.error_message_service){
                 user_name_input.editText?.setText("")
                 password_input.editText?.setText("")

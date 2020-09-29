@@ -26,6 +26,10 @@ class PersistedViewModel(private val userRepository: UserRepository): ViewModel(
         emit(name)
     }
 
+    fun isScrumMaster() = liveData(Dispatchers.IO) {
+        val name = userRepository.getPersistedUser().scrumMaster
+        emit(name)
+    }
 
     override fun onFailure(call: Call<Map<String, String>>, t: Throwable) {
         mutableLiveData.value = false to HashMap()

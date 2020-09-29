@@ -13,6 +13,7 @@ import com.example.retrohub.MainActivity
 import com.example.retrohub.R
 import com.example.retrohub.extensions.getString
 import com.example.retrohub.extensions.inflate
+import com.example.retrohub.extensions.setVisibilityViews
 import com.example.retrohub.extensions.showDialog
 import com.example.retrohub.model_view.PersistedViewModel
 import com.example.retrohub.model_view.RetroViewModel
@@ -54,12 +55,16 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) 
                 adapter = this@MainFragment.adapter
             }
         }
+        persistedVM.isScrumMaster().observe(viewLifecycleOwner) {
+            add_team_button.setOnClickListener { navigateAddTeam() }
+            label_add_team.setOnClickListener { navigateAddTeam() }
+            icon_add_team.setOnClickListener { navigateAddTeam() }
+            setVisibilityViews(it, listOf(add_team_button, label_add_team, icon_add_team))
+        }
         floating_action_button.setOnClickListener {
             findNavController().navigate(R.id.selectionTypeFragment)
         }
-        add_team_button.setOnClickListener { navigateAddTeam() }
-        label_add_team.setOnClickListener { navigateAddTeam() }
-        icon_add_team.setOnClickListener { navigateAddTeam() }
+
         help_icon.setOnClickListener {
             showDialog(R.string.title_help, R.string.message_help, R.string.accept_button) {}
         }
