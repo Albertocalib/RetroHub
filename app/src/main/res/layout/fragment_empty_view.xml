@@ -31,6 +31,7 @@
         app:layout_constraintTop_toTopOf="@id/welcome_text"
         android:layout_marginEnd="@dimen/m_margin"
         app:srcCompat="@drawable/ic_help" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/retro_list"
         android:layout_width="match_parent"
@@ -51,10 +52,10 @@
         android:id="@+id/icon_empty_box"
         android:layout_width="@dimen/icon_large"
         android:layout_height="@dimen/icon_large"
-        app:layout_constraintBottom_toBottomOf="@+id/retro_list"
+        android:layout_marginTop="@dimen/xxl_margin"
         app:layout_constraintEnd_toEndOf="@id/label_text_empty_view"
         app:layout_constraintStart_toStartOf="@id/label_text_empty_view"
-        app:layout_constraintTop_toTopOf="@+id/retro_list"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_text"
         app:srcCompat="@drawable/ic_box" />
 
     <TextView
@@ -66,7 +67,6 @@
         android:paddingTop="@dimen/m_margin"
         android:text="@string/empty_message"
         android:textSize="@dimen/m_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/retro_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/icon_empty_box" />
