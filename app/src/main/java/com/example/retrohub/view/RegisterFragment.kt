@@ -64,6 +64,7 @@ class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_registe
             validText(name_input) { true }.also { validated = it != "" },
             validText(lastname_input) { true }.also { validated = it != "" },
             validText(user_name_input) { true }.also { validated = it != "" },
+            false,
             validText(document_input, pattern = ::isDocumentValid).also { validated = it != "" },
             getString(if (nie_option.isChecked) R.string.nie else R.string.nif).also { validated = it != "" },
             validText(password_input) { true }.also { validated = it != "" },

@@ -18,6 +18,7 @@ import com.example.retrohub.model_view.PersistedViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login_view.*
 import org.koin.android.ext.android.inject
+import java.util.*
 
 
 class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view) {
@@ -54,7 +55,7 @@ class LoginFragment : MainActivity.RetroHubFragment(R.layout.fragment_login_view
             password_input.error = if (password.isBlank()) getString(R.string.fill_field).also { failed = true } else null
             if (!failed) {
                 showLoading()
-                vm.getLogin(user_name_input.getString(), password_input.getString() )
+                vm.getLogin(user_name_input.getString().toLowerCase(Locale.ROOT), password_input.getString() )
             }
         }
     }

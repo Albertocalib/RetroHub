@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class UserDTO(
     @SerializedName("documentUser") val documentUser: String,
     @SerializedName("documentType") val documentType: String,
+    @SerializedName("scrumMaster") val scrumMaster: Boolean,
     @SerializedName("name") val name: String,
     @SerializedName("lastname") val lastname: String,
     @SerializedName("username") val userName: String,

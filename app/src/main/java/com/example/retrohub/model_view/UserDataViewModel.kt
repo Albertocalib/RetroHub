@@ -36,6 +36,7 @@ private fun fromDTO(userDTO: UserDTO) = User(
     userDTO.name,
     userDTO.lastname,
     userDTO.userName,
+    userDTO.scrumMaster,
     userDTO.documentUser,
     userDTO.documentType,
     userDTO.password,

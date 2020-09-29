@@ -36,7 +36,8 @@ class PersistedViewModel(private val userRepository: UserRepository): ViewModel(
             val isSaved = userRepository.setPersistedUser(
                 response.body()?.get("username"),
                 response.body()?.get("name"),
-                response.body()?.get("lastname")
+                response.body()?.get("lastname"),
+                response.body()?.get("scrumMaster")
             )
             if (isSaved && !response.body().isNullOrEmpty()) {
                 mutableLiveData.value = true to response.body()!!

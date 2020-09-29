@@ -20,19 +20,19 @@ class UserRepository(private val service: UserService, private val userDAO: User
         email: String?, documentType: String,
         documentNumber: String
     ) = service.addUser(
-        UserDTO(documentNumber, documentType, name,
+        UserDTO(documentNumber, documentType, false, name,
             lastname,
             user.toLowerCase(Locale.ROOT), password, email)
     )
 
     fun getUserData(username:String) = service.getUserData(username)
 
-    suspend fun setPersistedUser(username: String?,name: String?, lastname: String?): Boolean{
+    suspend fun setPersistedUser(username: String?,name: String?, lastname: String?, sm: String?): Boolean{
         if(username.isNullOrBlank() || name.isNullOrBlank() || lastname.isNullOrBlank()){
             return false
         }
         userDAO.delete()
-        userDAO.insert(UserEntity(username, name, lastname))
+        userDAO.insert(UserEntity(username, name, lastname, sm == "true"))
         return true
     }
 
