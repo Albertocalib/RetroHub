@@ -3,6 +3,7 @@ package com.example.retrohub.view
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
@@ -44,7 +45,7 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) 
             loading_view.isVisible = false
             empty_view.isVisible = list.isNullOrEmpty()
             adapter = PreviewRetroAdapter(list.map { RetroPreview(RetroSubTypes.valueOf(it.subtype), it.title,
-                it.date) })
+                it.date, it.username) })
             retro_list.isVisible = !list.isNullOrEmpty()
 
             with(retro_list) {
@@ -56,10 +57,17 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) 
         floating_action_button.setOnClickListener {
             findNavController().navigate(R.id.selectionTypeFragment)
         }
-
+        add_team_button.setOnClickListener { navigateAddTeam() }
+        label_add_team.setOnClickListener { navigateAddTeam() }
+        icon_add_team.setOnClickListener { navigateAddTeam() }
         help_icon.setOnClickListener {
             showDialog(R.string.title_help, R.string.message_help, R.string.accept_button) {}
         }
+    }
+
+    fun navigateAddTeam() {
+        //TODO: navigate
+        Toast.makeText(requireContext(),R.string.commingSoon,Toast.LENGTH_LONG).show()
     }
 
 
@@ -79,6 +87,7 @@ class PreviewRetroAdapter(val items: List<RetroPreview>) : RecyclerView.Adapter<
         fun bind(data: RetroPreview) = with(itemView) {
             title_retro.text = data.title
             date_retro.text = data.date
+            author_retro.text = getString(R.string.author_retro) + data.author
             icon_retro.setImageDrawable(resources.getDrawable(
                 when(data.type) {
                     RetroSubTypes.STARFISH -> R.drawable.ic_starfish
@@ -93,5 +102,5 @@ class PreviewRetroAdapter(val items: List<RetroPreview>) : RecyclerView.Adapter<
     }
 }
 
-data class RetroPreview(val type: RetroSubTypes, val title: String, val date: String)
+data class RetroPreview(val type: RetroSubTypes, val title: String, val date: String, val author: String)
 

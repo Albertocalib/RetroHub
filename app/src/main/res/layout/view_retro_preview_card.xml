@@ -34,14 +34,26 @@
             app:layout_constraintTop_toBottomOf="@id/icon_retro"/>
 
         <TextView
-            android:id="@+id/date_retro"
+            android:id="@+id/author_retro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_marginStart="@dimen/m_margin"
+            android:paddingTop="@dimen/s_margin"
+            android:paddingBottom="@dimen/s_margin"
+            android:textColor="@color/black_secondary"
+            tools:text="Autor/a: Ana"
+            app:layout_constraintTop_toBottomOf="@id/title_retro"/>
+
+        <TextView
+            android:id="@+id/date_retro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_marginStart="@dimen/m_margin"
             android:textColor="@color/black_secondary"
             tools:text="11/11/1998"
-            app:layout_constraintTop_toBottomOf="@id/title_retro"/>
+            app:layout_constraintTop_toBottomOf="@id/author_retro"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

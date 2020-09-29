@@ -98,5 +98,6 @@
     <!-- Main view -->
     <string name="title_help">Ayuda</string>
     <string name="message_help">Esta es la pantalla principal de la aplicación, está compuesta de las siguientes partes:\n - Carrusel de retrospectivas: muestra las distintas retrospectivas que has realizado en la aplicación. \n - Acceso directo a la creación de retrospectivas: Es el botón que se encuentra en la esquina inferior derecha. - Menú: se encuentra en la esquina superior derecha, tiene varios accesos a las distintas zonas de la aplicación.</string>
-
+    <string name="add_team">Añadir equipo</string>
+    <string name="author_retro">"Autor/a: "</string>
 </resources>
