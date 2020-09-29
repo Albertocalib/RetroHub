@@ -12,6 +12,7 @@ import com.example.retrohub.MainActivity
 import com.example.retrohub.R
 import com.example.retrohub.extensions.getString
 import com.example.retrohub.extensions.inflate
+import com.example.retrohub.extensions.showDialog
 import com.example.retrohub.model_view.PersistedViewModel
 import com.example.retrohub.model_view.RetroViewModel
 import com.example.retrohub.view.mobile.RetroSubTypes
@@ -54,6 +55,10 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) 
         }
         floating_action_button.setOnClickListener {
             findNavController().navigate(R.id.selectionTypeFragment)
+        }
+
+        help_icon.setOnClickListener {
+            showDialog(R.string.title_help, R.string.message_help, R.string.accept_button) {}
         }
     }
 

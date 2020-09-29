@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity() {
 
         fun provideRetrofit(factory: Gson, client: OkHttpClient): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://192.168.1.133:8081")
+                .baseUrl("http://192.168.1.136:8081")
                 .addConverterFactory(GsonConverterFactory.create(factory))
                 .client(client)
                 .build()

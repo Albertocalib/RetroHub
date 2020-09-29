@@ -91,8 +91,12 @@
     <string name="retro_empty_error">¡Ups! Aún no ha rellenado nada</string>
     <!-- Retro preview -->
     <string name="empty_field">No se ha añadido nada aún</string>
-    <!--Retro saved -->
+    <!-- Retro saved -->
     <string name="retro_ok">¡Tu retrospectiva se ha guardado con éxito!</string>
     <string name="retro_error">Ups... Parece que ha habido un problema, compruebe su conexión e inténtelo de nuevo más tarde.</string>
+
+    <!-- Main view -->
+    <string name="title_help">Ayuda</string>
+    <string name="message_help">Esta es la pantalla principal de la aplicación, está compuesta de las siguientes partes:\n - Carrusel de retrospectivas: muestra las distintas retrospectivas que has realizado en la aplicación. \n - Acceso directo a la creación de retrospectivas: Es el botón que se encuentra en la esquina inferior derecha. - Menú: se encuentra en la esquina superior derecha, tiene varios accesos a las distintas zonas de la aplicación.</string>
 
 </resources>

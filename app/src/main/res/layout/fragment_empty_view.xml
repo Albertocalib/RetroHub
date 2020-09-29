@@ -8,26 +8,35 @@
 
     <TextView
         android:id="@+id/welcome_text"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:maxLines="1"
         android:layout_marginStart="@dimen/m_margin"
-        android:layout_marginEnd="@dimen/m_margin"
         android:layout_marginTop="@dimen/m_margin"
+        android:gravity="center"
+        android:maxLines="1"
         android:textColor="@color/black_secondary"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        tools:text="¡Hola Ana!"/>
+        app:layout_constraintEnd_toEndOf="@id/help_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="¡Hola Ana!" />
 
+    <ImageView
+        android:id="@+id/help_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@id/welcome_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/welcome_text"
+        android:layout_marginEnd="@dimen/m_margin"
+        app:srcCompat="@drawable/ic_help" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/retro_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryLight"
-        android:layout_marginTop="@dimen/l_margin"
+        android:background="@color/colorPrimaryExtraLight"
+        android:layout_marginTop="@dimen/xxl_margin"
         app:layout_constraintTop_toBottomOf="@id/welcome_text" />
 
     <androidx.constraintlayout.widget.Group
@@ -42,9 +51,10 @@
         android:id="@+id/icon_empty_box"
         android:layout_width="@dimen/icon_large"
         android:layout_height="@dimen/icon_large"
-        app:layout_constraintBottom_toTopOf="@id/label_text_empty_view"
+        app:layout_constraintBottom_toBottomOf="@+id/retro_list"
         app:layout_constraintEnd_toEndOf="@id/label_text_empty_view"
         app:layout_constraintStart_toStartOf="@id/label_text_empty_view"
+        app:layout_constraintTop_toTopOf="@+id/retro_list"
         app:srcCompat="@drawable/ic_box" />
 
     <TextView
@@ -56,10 +66,10 @@
         android:paddingTop="@dimen/m_margin"
         android:text="@string/empty_message"
         android:textSize="@dimen/m_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/retro_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
+        app:layout_constraintTop_toBottomOf="@+id/icon_empty_box" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
@@ -75,6 +85,7 @@
 
 
     <include layout="@layout/view_loading"
-        android:id="@+id/loading_view"/>
+        android:id="@+id/loading_view"
+        tools:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
