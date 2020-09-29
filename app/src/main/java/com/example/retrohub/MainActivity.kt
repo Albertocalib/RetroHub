@@ -19,9 +19,11 @@ import com.example.retrohub.extensions.hideKeyboard
 import com.example.retrohub.extensions.showDialog
 import com.example.retrohub.model_view.*
 import com.example.retrohub.repository.RetroRepository
+import com.example.retrohub.repository.TeamRepository
 import com.example.retrohub.repository.UserRepository
 import com.example.retrohub.repository.local.AppDatabase
 import com.example.retrohub.service.RetrospectiveService
+import com.example.retrohub.service.TeamService
 import com.example.retrohub.service.UserService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -98,6 +100,7 @@ class MainActivity : AppCompatActivity() {
     val repositoryModule = module {
         single { UserRepository(get(), get()) }
         single { RetroRepository(get(), get()) }
+        single { TeamRepository(get()) }
     }
 
     val vmModule = module {
@@ -118,8 +121,14 @@ class MainActivity : AppCompatActivity() {
         fun provideRetroApi(retrofit: Retrofit): RetrospectiveService {
             return retrofit.create(RetrospectiveService::class.java)
         }
+
+        fun provideTeamApi(retrofit: Retrofit): TeamService {
+            return retrofit.create(TeamService::class.java)
+        }
+
         single { provideUseApi(get()) }
         single { provideRetroApi(get()) }
+        single { provideTeamApi(get()) }
     }
 
     val persistenceModule = module {
