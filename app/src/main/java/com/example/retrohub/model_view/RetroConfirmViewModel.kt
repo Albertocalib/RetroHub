@@ -21,6 +21,11 @@ class RetroConfirmViewModel(private val retroRepository: RetroRepository): ViewM
         viewModelScope.launch(Dispatchers.IO) {
             val retro = retroRepository.getPersistedRetro()
             retroRepository.saveRetro(retro).enqueue(this@RetroConfirmViewModel)
+        }
+    }
+
+    fun resetInfo() {
+        viewModelScope.launch(Dispatchers.IO) {
             retroRepository.deleteAll()
         }
     }

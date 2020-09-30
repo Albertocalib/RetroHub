@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <TextView
         android:id="@+id/welcome_text"
         style="@style/TextAppearance.MaterialComponents.Headline5"
@@ -124,7 +123,6 @@
         android:padding="@dimen/s_margin"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:textColor="@color/black_secondary"/>
-
 
 
     <include layout="@layout/view_loading"

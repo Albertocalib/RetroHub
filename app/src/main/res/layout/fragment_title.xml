@@ -36,8 +36,6 @@
         android:layout_margin="@dimen/l_margin"
         android:hint="@string/input_label_title"
         app:errorEnabled="true"
-        app:layout_constraintVertical_bias="0.20"
-        app:layout_constraintBottom_toTopOf="@+id/next_step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_label_screen">
@@ -51,6 +49,51 @@
             android:maxLength="30" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/teams_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="add_user_title,team_list,loading_small_anim"/>
+
+
+    <TextView
+        android:id="@+id/add_user_title"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/l_margin"
+        android:gravity="center"
+        android:text="@string/add_user_title"
+        android:textColor="@color/black_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_input" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_small_anim"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:elevation="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/xl_margin"
+        app:layout_constraintTop_toBottomOf="@+id/title_input"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/small_loading" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/team_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/l_margin"
+        android:background="@color/colorPrimaryExtraLight"
+        app:layout_constraintBottom_toTopOf="@+id/next_step"
+        app:layout_constraintTop_toBottomOf="@+id/add_user_title"
+        app:layout_constraintVertical_bias="0"/>
+
 
 
     <Button

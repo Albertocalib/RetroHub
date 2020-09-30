@@ -21,14 +21,15 @@ class PersistedViewModel(private val userRepository: UserRepository): ViewModel(
             userRepository.getUser(userName).enqueue(this@PersistedViewModel)
         }
     }
-    fun getUserName() = liveData(Dispatchers.IO) {
+    fun getFirstName() = liveData(Dispatchers.IO) {
         val name = userRepository.getPersistedUser().firstName
         emit(name)
     }
 
     fun isScrumMaster() = liveData(Dispatchers.IO) {
-        val name = userRepository.getPersistedUser().scrumMaster
-        emit(name)
+        val isScrumMaster = userRepository.getPersistedUser().scrumMaster
+        val userName = userRepository.getPersistedUser().username
+        emit(userName to isScrumMaster)
     }
 
     override fun onFailure(call: Call<Map<String, String>>, t: Throwable) {

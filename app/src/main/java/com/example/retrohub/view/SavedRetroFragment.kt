@@ -26,7 +26,11 @@ class SavedRetroFragment: MainActivity.RetroHubFragment(R.layout.fragment_retro_
             else setErrorResult()
             loading_view.isVisible = false
         }
-        next_step.setOnClickListener { findNavController().navigate(R.id.mainFragment) }
+        next_step.setOnClickListener {
+            viewModel.resetInfo()
+            findNavController().popBackStack()
+            findNavController().navigate(R.id.mainFragment)
+        }
         viewModel.saveRetro()
     }
 

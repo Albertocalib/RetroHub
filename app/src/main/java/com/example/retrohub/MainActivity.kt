@@ -112,6 +112,7 @@ class MainActivity : AppCompatActivity() {
         viewModel { PersistedRetroViewModel(get(), get()) }
         viewModel { RetroConfirmViewModel(get()) }
         viewModel { RetroViewModel(get(), get()) }
+        viewModel { TeamViewModel(get()) }
     }
 
     val serviceModule = module {

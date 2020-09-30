@@ -35,7 +35,7 @@ enum class RetroSubTypes(val title: String, val fields: List<String>, @StringRes
         R.string.three_little_pigs
     ),
     SEMAPHORE("SEMAPHORE", listOf("Rojo", "Ámbar", "Verde"), R.string.semaphore),
-    FOUR_L("4L", listOf("Liked", "Learned", "Lacked", "Longed for"), R.string.fourl)
+    FOUR_L("FOUR_L", listOf("Liked", "Learned", "Lacked", "Longed for"), R.string.fourl)
 
 }
 

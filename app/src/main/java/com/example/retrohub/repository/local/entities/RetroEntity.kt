@@ -12,7 +12,7 @@ data class RetroEntity(
     @PrimaryKey val username: String,
     @ColumnInfo(name = "title") var title: String?,
     @ColumnInfo(name = "type") val type: String?,
-    @ColumnInfo(name = "team") val team: List<String>?,
+    @ColumnInfo(name = "team") var team: List<String>?,
     @ColumnInfo(name = "subtype") val subtype: String?,
     @ColumnInfo(name = "date") val date: String?,
     @ColumnInfo(name = "data") var data: Map<String, List<String>>

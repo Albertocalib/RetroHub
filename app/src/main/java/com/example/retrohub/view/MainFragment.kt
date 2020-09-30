@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,13 +17,9 @@ import com.example.retrohub.extensions.showDialog
 import com.example.retrohub.model_view.PersistedViewModel
 import com.example.retrohub.model_view.RetroViewModel
 import com.example.retrohub.view.mobile.RetroSubTypes
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_empty_view.*
-import kotlinx.android.synthetic.main.view_card_type.view.*
 import kotlinx.android.synthetic.main.view_retro_preview_card.view.*
 import org.koin.android.ext.android.inject
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) {
@@ -38,7 +33,7 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loading_view.isVisible = true
-        persistedVM.getUserName().observe(viewLifecycleOwner) {
+        persistedVM.getFirstName().observe(viewLifecycleOwner) {
             welcome_text.text = getString(R.string.welcome_message) + " $it!"
         }
         retroVM.getRetros()
@@ -59,7 +54,7 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) 
             add_team_button.setOnClickListener { navigateAddTeam() }
             label_add_team.setOnClickListener { navigateAddTeam() }
             icon_add_team.setOnClickListener { navigateAddTeam() }
-            setVisibilityViews(it, listOf(add_team_button, label_add_team, icon_add_team))
+            setVisibilityViews(it.second, listOf(add_team_button, label_add_team, icon_add_team))
         }
         floating_action_button.setOnClickListener {
             findNavController().navigate(R.id.selectionTypeFragment)

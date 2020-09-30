@@ -59,7 +59,7 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
         }
     }
 
-    fun updateRetro(title: String) {
+    fun updateRetro(title: String, team: List<String>) {
         if(title.isBlank()){
             mutableState.value = State.ERROR
             return
@@ -69,6 +69,7 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
             withContext(Dispatchers.IO) {
                 val retro = retroRepository.getPersistedRetro().apply {
                     this.title = title
+                    this.team = team
                 }
                 retroRepository.updatePersistedRetro(retro)
             }

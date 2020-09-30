@@ -85,6 +85,8 @@
     <string name="title_view_toolbar">Título</string>
     <string name="input_label_title">Título de la retrospectiva</string>
     <string name="empty_error_message">El título de la retrospectiva no puede estar vacío</string>
+    <string name="add_user">Añadir</string>
+    <string name="add_user_title">Añade a los miembros de un equipo</string>
     <!--Fill list info -->
     <string name="retro_card_description">Descripción</string>
     <string name="retro_field">Sección</string>

@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:background="@color/white"
         android:alpha="0.80"
-        android:visibility="gone"
         android:elevation="2dp"/>
 
     <com.airbnb.lottie.LottieAnimationView
