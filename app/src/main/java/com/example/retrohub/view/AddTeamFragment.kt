@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.retrohub.MainActivity
 import com.example.retrohub.R
+import com.example.retrohub.extensions.showDialog
 import kotlinx.android.synthetic.main.fragment_add_team.*
 import kotlinx.android.synthetic.main.view_card_grid.view.*
 
@@ -29,6 +30,10 @@ class AddTeamFragment : MainActivity.RetroHubFragment(R.layout.fragment_add_team
             loading_view.isVisible = true
             TODO("call services save team")
         }
+    }
+
+    fun onSearchError() {
+        showDialog(R.string.user_not_found_title, R.string.user_not_found, R.string.accept_button) {}
     }
 
     fun updateMembersList() {
