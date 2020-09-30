@@ -68,4 +68,8 @@
         android:name="com.example.retrohub.view.SavedRetroFragment"
         android:label="saved-retro-fragment"/>
 
+    <fragment android:id="@+id/addTeamFragment"
+        android:name="com.example.retrohub.view.AddTeamFragment"
+        android:label="add-team-fragment"/>
+
 </navigation>

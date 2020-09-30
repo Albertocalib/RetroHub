@@ -66,8 +66,7 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) 
     }
 
     fun navigateAddTeam() {
-        //TODO: navigate
-        Toast.makeText(requireContext(),R.string.commingSoon,Toast.LENGTH_LONG).show()
+        findNavController().navigate(R.id.addTeamFragment)
     }
 
 
