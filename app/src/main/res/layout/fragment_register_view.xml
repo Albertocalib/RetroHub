@@ -195,4 +195,11 @@
     </androidx.core.widget.NestedScrollView>
 
 
+    <include
+        android:id="@+id/loading_view"
+        layout="@layout/view_loading"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </FrameLayout>

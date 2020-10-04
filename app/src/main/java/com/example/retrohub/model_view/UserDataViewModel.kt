@@ -11,23 +11,23 @@ import retrofit2.Response
 
 class UserDataViewModel(private val userRepository: UserRepository) : ViewModel(), retrofit2.Callback<UserDTO> {
 
-    private val mutableUser = MutableLiveData<User>()
+    private val mutableUser = MutableLiveData<User?>()
 
-    val user: LiveData<User>
+    val user: LiveData<User?>
         get() = mutableUser
 
     fun getDataUser(username: String) = userRepository.getUserData(username).enqueue(this)
 
     override fun onFailure(call: Call<UserDTO>, t: Throwable) {
-        //TODO: control error
+        mutableUser.value = null
     }
 
     override fun onResponse(call: Call<UserDTO>, response: Response<UserDTO>) {
         if (response.isSuccessful) {
-            val data = response.body()?: return
-            mutableUser.value = fromDTO(data)
+            val data = response.body()
+            mutableUser.value = if(data == null) null else fromDTO(data)
         } else {
-            //TODO: control error
+            mutableUser.value = null
         }
     }
 }

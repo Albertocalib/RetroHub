@@ -8,6 +8,7 @@ import androidx.lifecycle.observe
 import com.example.retrohub.MainActivity
 import com.example.retrohub.R
 import com.example.retrohub.extensions.max
+import com.example.retrohub.extensions.showDialog
 import com.example.retrohub.extensions.toLowerCaseLocale
 import com.example.retrohub.model_view.PersonalAreaViewModel
 import com.example.retrohub.model_view.UserDataViewModel
@@ -56,7 +57,10 @@ class PersonalAreaFragment : MainActivity.RetroHubFragment(R.layout.fragment_per
         loading_view.isVisible = false
     }
 
-    private fun setData(user: User) {
+    private fun setData(u: User?) {
+        if (u == null)
+            showDialog(R.string.error_message_title,R.string.error_message_service,R.string.accept_button){ }
+        val user = u ?: return
         user_name.text = "${user.name} ${user.lastname}"
         document_number.text = user.documentUser
         title_document_type.text =

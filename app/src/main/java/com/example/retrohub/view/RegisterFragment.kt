@@ -41,7 +41,8 @@ class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_registe
         vm.state.observe(viewLifecycleOwner, ::onStateChanged)
     }
 
-    private fun onStateChanged(state: RegisterViewModel.RegisterState) =
+    private fun onStateChanged(state: RegisterViewModel.RegisterState) {
+        loading_view.isVisible = false
         when (state) {
             RegisterViewModel.RegisterState.AUTHENTICATION_ERROR -> showDialog(
                 R.string.error_message_title,
@@ -57,6 +58,7 @@ class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_registe
             { findNavController().navigate(R.id.loginFragment) }
             RegisterViewModel.RegisterState.SUCCESS -> findNavController().navigate(R.id.loginFragment)
         }
+    }
 
     private fun validate() {
         validated = true
@@ -70,7 +72,7 @@ class RegisterFragment : MainActivity.RetroHubFragment(R.layout.fragment_registe
             validText(password_input) { true }.also { validated = it != "" },
             validText(email_input, true, ::isEmailValid)
         )
-        //TODO: add loading
+        loading_view.isVisible = true
         if (validated) vm.createAccount(user)
     }
 
