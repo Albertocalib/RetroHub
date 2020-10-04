@@ -110,5 +110,6 @@
     <string name="team_username">Nombre del miembro del equipo</string>
     <string name="user_not_found_title">Usuario no encontrado</string>
     <string name="user_not_found">El usuario que has introducido no existe, por favor comprueba que el nombre es el correcto.</string>
+    <string name="empty_user_name">Este campo no puede estar vacío</string>
 
 </resources>

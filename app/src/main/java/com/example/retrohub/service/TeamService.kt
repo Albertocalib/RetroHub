@@ -11,6 +11,6 @@ interface TeamService {
 
     @Headers("Content-Type: application/json")
     @POST("/team/")
-    fun addTeam(@Body user: TeamDTO): Call<TeamDTO>
+    fun addTeam(@Body user: TeamDTO): Call<Boolean>
 
 }

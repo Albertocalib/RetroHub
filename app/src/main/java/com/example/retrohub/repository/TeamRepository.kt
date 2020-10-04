@@ -10,7 +10,7 @@ class TeamRepository(private val service: TeamService) {
 
     fun createTeam(scrumMaster: String, team: List<String>, name: String) = service.addTeam(TeamDTO(
         scrumMaster,
-            team,
+        team,
         name
     ))
 

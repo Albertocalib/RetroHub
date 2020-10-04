@@ -65,7 +65,7 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view) 
         }
     }
 
-    fun navigateAddTeam() {
+    private fun navigateAddTeam() {
         findNavController().navigate(R.id.addTeamFragment)
     }
 

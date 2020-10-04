@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         viewModel { PersistedRetroViewModel(get(), get()) }
         viewModel { RetroConfirmViewModel(get()) }
         viewModel { RetroViewModel(get(), get()) }
-        viewModel { TeamViewModel(get()) }
+        viewModel { TeamViewModel(get(), get()) }
     }
 
     val serviceModule = module {
@@ -155,7 +155,7 @@ class MainActivity : AppCompatActivity() {
 
         fun provideRetrofit(factory: Gson, client: OkHttpClient): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("http://192.168.1.136:8081")
+                .baseUrl("http://192.168.1.135:8081")
                 .addConverterFactory(GsonConverterFactory.create(factory))
                 .client(client)
                 .build()

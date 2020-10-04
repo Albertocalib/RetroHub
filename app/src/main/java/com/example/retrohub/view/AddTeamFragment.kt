@@ -2,41 +2,76 @@ package com.example.retrohub.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.retrohub.MainActivity
 import com.example.retrohub.R
+import com.example.retrohub.extensions.getString
 import com.example.retrohub.extensions.showDialog
+import com.example.retrohub.model_view.TeamViewModel
 import kotlinx.android.synthetic.main.fragment_add_team.*
 import kotlinx.android.synthetic.main.view_card_grid.view.*
+import org.koin.android.ext.android.inject
+import java.util.*
 
 
 class AddTeamFragment : MainActivity.RetroHubFragment(R.layout.fragment_add_team) {
 
-    private var nameList = emptyList<String>()
+    private var nameList = emptyList<String>().toMutableList()
+
+    private val teamViewModel: TeamViewModel by inject()
 
     override fun getToolbarTitle() = getString(R.string.add_team_toolbar)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        teamViewModel.saveState.observe(viewLifecycleOwner) {
+            if (it) closeProcess()
+            else onServiceError()
+        }
+        teamViewModel.validUser.observe(viewLifecycleOwner,::isValidUser)
+
         add_user.setOnClickListener {
-            loading_view.isVisible = true
-            val name = name_input.text.text
-            if(name.isNullOrBlank()) TODO("show error dialog")
-            else TODO("call services")
+            val name = user_name_input.getString()
+            if(name.isBlank()) user_name_input.error = getString(R.string.empty_user_name)
+            else {
+                loading_view.isVisible = true
+                teamViewModel.validateUser(name)
+            }
         }
 
         next_step.setOnClickListener {
-            loading_view.isVisible = true
-            TODO("call services save team")
+            val name = name_input.getString()
+            if (name.isBlank()) name_input.error = getString(R.string.empty_user_name)
+            else if (nameList.isEmpty()) Toast.makeText(requireContext(), "Su equipo está vacío.", Toast.LENGTH_LONG).show()
+            else {
+                loading_view.isVisible = true
+                teamViewModel.createTeam(nameList, name)
+            }
         }
     }
 
-    fun onSearchError() {
-        showDialog(R.string.user_not_found_title, R.string.user_not_found, R.string.accept_button) {}
+    private fun isValidUser(isValid: Boolean) {
+        if(!isValid) onSearchError()
+        else updateMembersList(user_name_input.getString())
+        user_name_input.error = null
+        user_name_input.editText?.setText("")
     }
 
-    fun updateMembersList() {
+    private fun onServiceError() {
+        loading_view.isVisible = false
+        showDialog(R.string.error_message_title,R.string.error_message_service,R.string.accept_button){ }
+    }
+
+    private fun onSearchError() {
+        loading_view.isVisible = false
+        showDialog(R.string.user_not_found_title, R.string.user_not_found, R.string.accept_button) { }
+    }
+
+    private fun updateMembersList(name: String) {
+        loading_view.isVisible = false
+        nameList.add(name.toLowerCase(Locale.ROOT))
         var list = ""
         nameList.forEachIndexed { index, s ->
             list += when {
@@ -48,7 +83,7 @@ class AddTeamFragment : MainActivity.RetroHubFragment(R.layout.fragment_add_team
         list_usernames.text = list
     }
 
-    fun closeProcess() {
+    private fun closeProcess() {
         loading_view.isVisible = false
         findNavController().popBackStack()
         findNavController().navigate(R.id.mainFragment)
