@@ -37,7 +37,7 @@ class RegisterUnitTest : LifecycleOwner {
     override fun getLifecycle() = lifecycle
 
     @Test
-    fun login_on_failure(){
+    fun loginOnFailure(){
         val vm = RegisterViewModel(userRepository)
         vm.state.observe(this, ::onFailure)
         vm.onFailure(mock(Call::class.java) as Call<Boolean>,IOException())
@@ -46,7 +46,7 @@ class RegisterUnitTest : LifecycleOwner {
 
 
     @Test
-    fun login_on_success(){
+    fun loginOnSuccess(){
         val vm = RegisterViewModel(userRepository)
         vm.state.observe(this, ::onSuccess)
         vm.onResponse(mock(Call::class.java) as Call<Boolean>, Response.success(true))
@@ -55,7 +55,7 @@ class RegisterUnitTest : LifecycleOwner {
 
 
     @Test
-    fun login_on_error(){
+    fun loginOnError(){
         val vm = RegisterViewModel(userRepository)
         vm.state.observe(this, ::onError)
         vm.onResponse(mock(Call::class.java) as Call<Boolean>, Response.error(406, EMPTY_RESPONSE))

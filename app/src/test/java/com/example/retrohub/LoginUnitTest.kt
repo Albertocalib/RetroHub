@@ -39,7 +39,7 @@ class LoginUnitTest : LifecycleOwner {
     override fun getLifecycle() = lifecycle
 
     @Test
-    fun login_on_failure(){
+    fun loginOnFailure(){
         val vm = LoginViewModel(userRepository)
         vm.state.observe(this, ::onError)
         vm.onFailure(mock(Call::class.java) as Call<Boolean>,IOException())
@@ -48,7 +48,7 @@ class LoginUnitTest : LifecycleOwner {
 
 
     @Test
-    fun login_on_success(){
+    fun loginOnSuccess(){
         val vm = LoginViewModel(userRepository)
         vm.state.observe(this, ::onSuccess)
         vm.onResponse(mock(Call::class.java) as Call<Boolean>, Response.success(true))
@@ -57,28 +57,28 @@ class LoginUnitTest : LifecycleOwner {
 
 
     @Test
-    fun login_on_error(){
+    fun loginOnError(){
         val vm = LoginViewModel(userRepository)
         vm.state.observe(this, ::onError)
         vm.onResponse(mock(Call::class.java) as Call<Boolean>, Response.error(405, EMPTY_RESPONSE))
     }
 
     @Test
-    fun login_with_empty_credentials() {
+    fun loginWithEmptyCredentials() {
         val vm = LoginViewModel(userRepository)
         vm.getLogin("","")
         onError(vm.state.value)
     }
 
     @Test
-    fun login_without_username() {
+    fun loginWithoutUsername() {
         val vm = LoginViewModel(userRepository)
         vm.getLogin("", FAKE_STRING)
         onError(vm.state.value)
     }
 
     @Test
-    fun login_without_password() {
+    fun loginWithoutPassword() {
         val vm = LoginViewModel(userRepository)
         vm.getLogin(FAKE_STRING, "")
         onError(vm.state.value)
