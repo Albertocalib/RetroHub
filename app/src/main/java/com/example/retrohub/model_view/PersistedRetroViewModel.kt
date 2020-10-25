@@ -30,6 +30,14 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
     val retro: LiveData<Retro>
         get() = retroMutable
 
+    fun saveRetro(retro: Retro) {
+        mutableState.value = State.SAVING
+        viewModelScope.launch {
+            retroRepository.savePersistedRetro(retro.createEntity())
+            mutableState.value = State.SAVED
+        }
+    }
+
     fun saveRetro(type: String, subtype: String){
         mutableState.value = State.SAVING
         viewModelScope.launch {
@@ -92,9 +100,7 @@ class PersistedRetroViewModel(private val retroRepository: RetroRepository, priv
 
     fun getRetro() {
         viewModelScope.launch {
-            val entity = withContext(Dispatchers.IO) {
-                retroRepository.getPersistedRetro()
-            }
+            val entity = retroRepository.getPersistedRetro()
             retroMutable.value = createRetroFromEntity(entity)
         }
     }

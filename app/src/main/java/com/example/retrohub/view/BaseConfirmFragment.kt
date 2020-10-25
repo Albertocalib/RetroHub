@@ -9,6 +9,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -46,6 +47,7 @@ abstract class BaseConfirmFragment: MainActivity.RetroHubFragment(R.layout.retro
         next_step.setOnClickListener {
             findNavController().navigate(R.id.savedRetroFragment)
         }
+        next_step.isVisible = (findNavController().previousBackStackEntry?.destination as FragmentNavigator.Destination).className != MainFragment::class.java.canonicalName
     }
 
     private fun setItems(retro: Retro) {
