@@ -4,6 +4,7 @@
     <string name="commingSoon">Próximamente</string>
     <string name="work_in_progress">Estamos trabajando en ello</string>
     <string name="empty_message">¡Ups! Parece que aún no tienes nada.</string>
+    <string name="empty_message_months">¡Ups! Parece que no tienes nada en los últimos dos meses.</string>
 
     <!-- Default values -->
     <string name="large_text">La Torralba, que lo supo, se fue tras él y seguíale a pie y descalza desde lejos, con un bordón en la mano y con unas alforjas al cuello, donde llevaba, según es fama, un pedazo de espejo y otro de un peine y no sé qué botecillo de mudas para la cara; mas llevase lo que llevase, que yo no me quiero meter ahora en averiguallo, solo diré que dicen que el pastor llegó con su ganado a pasar el río Guadiana, y en aquella sazón iba crecido y casi fuera de madre, y por la parte que llegó no había barca ni barco, ni quien le pasase a él ni a su ganado de la otra parte, de lo que se congojó mucho porque veía que la Torralba venía ya muy cerca y le había de dar mucha pesadumbre con sus ruegos y lágrimas; mas tanto anduvo mirando, que vio un pescador que tenía junto a sí un barco, tan pequeño, que solamente podían caber en él una persona y una cabra; y, con todo esto, le habló y concertó con él que le pasase a él y a trecientas cabras que llevaba. Entró el pescador en el barco y pasó una cabra; volvió y pasó otra; tornó a volver y tornó a pasar otra.» </string>
@@ -29,6 +30,7 @@
     <string name="name">Nombre</string>
     <string name="lastname">Apellidos</string>
     <string name="select_document_type">Selecciona el tipo de documento</string>
+    <string name="scrum_master_question">¿Eres Scrum Master?</string>
     <string name="nie">NIE</string>
     <string name="nif">NIF</string>
     <string name="document_number">Número de documento</string>
@@ -80,6 +82,8 @@
     <string name="fourl">4Ls</string>
     <string name="fast_and_furious">Fast and Furious</string>
     <string name="next_step">Continuar</string>
+    <string name="message_help_type_view">En esta pantalla puedes seleccionar el tipo de retrospectiva pulsando uno de los radio button que hay en la pantalla, solo se podrá seleccionar uno de ellos. \n \n Para la selección de subtipo se tendrá que pulsar el subtipo deseado. Cuando sea seleccionado el subtipo este se marcará con un icono de un check. \n \n Para continuar con el siguiente paso de la pantalla debe pulsar el botón azul que pone "Continuar".</string>
+
     <!-- Title screen -->
     <string name="title_view">¿Cómo quieres llamar a tu retrospectiva?</string>
     <string name="title_view_toolbar">Título</string>
@@ -87,6 +91,8 @@
     <string name="empty_error_message">El título de la retrospectiva no puede estar vacío</string>
     <string name="add_user">Añadir</string>
     <string name="add_user_title">Añade a los miembros de un equipo</string>
+    <string name="message_help_title_view">En esta pantalla deberás indicar el título que le quieras dar a la retrospectiva escriéndolo en la caja de texto que hay al inicio de la pantalla. \n \n Para pasar a la siguiente pantalla pulse el botón "Continuar".</string>
+
     <!--Fill list info -->
     <string name="retro_card_description">Descripción</string>
     <string name="retro_field">Sección</string>
@@ -99,7 +105,7 @@
 
     <!-- Main view -->
     <string name="title_help">Ayuda</string>
-    <string name="message_help">Esta es la pantalla principal de la aplicación, está compuesta de las siguientes partes:\n - Carrusel de retrospectivas: muestra las distintas retrospectivas que has realizado en la aplicación. \n - Acceso directo a la creación de retrospectivas: Es el botón que se encuentra en la esquina inferior derecha. - Menú: se encuentra en la esquina superior derecha, tiene varios accesos a las distintas zonas de la aplicación.</string>
+    <string name="message_help">Esta es la pantalla principal de la aplicación, está compuesta de las siguientes partes:\n \n \t - Carrusel de retrospectivas: muestra las distintas retrospectivas que has realizado en la aplicación. \n \t - Acceso directo a la creación de retrospectivas: Es el botón que se encuentra en la esquina inferior derecha. \n \t - Menú: se encuentra en la esquina superior derecha, tiene varios accesos a las distintas zonas de la aplicación.</string>
     <string name="add_team">Añadir equipo</string>
     <string name="author_retro">"Autor/a: "</string>
 

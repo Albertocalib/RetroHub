@@ -18,7 +18,10 @@ import com.example.retrohub.model_view.PersistedRetroViewModel
 import com.example.retrohub.model_view.State
 import com.example.retrohub.view.mobile.RetroSubTypes
 import com.example.retrohub.view.mobile.RetroType
+import kotlinx.android.synthetic.main.fragment_empty_view.*
 import kotlinx.android.synthetic.main.fragment_selection_type.*
+import kotlinx.android.synthetic.main.fragment_selection_type.help_icon
+import kotlinx.android.synthetic.main.fragment_selection_type.loading_view
 import kotlinx.android.synthetic.main.view_card_type.view.*
 import org.koin.android.ext.android.inject
 
@@ -43,6 +46,9 @@ class SelectionTypeFragment : MainActivity.RetroHubFragment(R.layout.fragment_se
         }
         viewModel.state.observe(viewLifecycleOwner, ::setState)
         next_step.setOnClickListener { viewModel.saveRetro(typeSelected.title,subtypeSelected.title) }
+        help_icon.setOnClickListener {
+            showDialog(R.string.title_help, R.string.message_help_type_view, R.string.accept_button) {}
+        }
     }
 
     private fun setState(state: State){

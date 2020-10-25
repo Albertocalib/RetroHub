@@ -94,6 +94,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/m_margin"
                 android:fontFamily="@font/catamaran_medium"
+                android:text="@string/scrum_master_question"
+                android:textColor="@color/black_secondary"
+                android:textSize="@dimen/m_text_size" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/yes_option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/catamaran_medium"
+                    android:text="Sí"
+                    android:textColor="@color/black_secondary"
+                    android:textSize="@dimen/s_text_size" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/no_option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/catamaran_medium"
+                    android:checked="true"
+                    android:text="No"
+                    android:textColor="@color/black_secondary"
+                    android:textSize="@dimen/s_text_size" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/m_margin"
+                android:fontFamily="@font/catamaran_medium"
                 android:text="@string/select_document_type"
                 android:textColor="@color/black_secondary"
                 android:textSize="@dimen/m_text_size" />

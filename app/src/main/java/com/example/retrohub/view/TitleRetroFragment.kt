@@ -18,8 +18,10 @@ import com.example.retrohub.model_view.PersistedViewModel
 import com.example.retrohub.model_view.State
 import com.example.retrohub.model_view.TeamViewModel
 import com.example.retrohub.view.mobile.Team
+import kotlinx.android.synthetic.main.fragment_selection_type.*
 import kotlinx.android.synthetic.main.fragment_selection_type.next_step
 import kotlinx.android.synthetic.main.fragment_title.*
+import kotlinx.android.synthetic.main.fragment_title.help_icon
 import kotlinx.android.synthetic.main.view_card_type.view.*
 import org.koin.android.ext.android.inject
 
@@ -38,6 +40,10 @@ class TitleRetroFragment : MainActivity.RetroHubFragment(R.layout.fragment_title
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        help_icon.setOnClickListener {
+            showDialog(R.string.title_help, R.string.message_help_title_view, R.string.accept_button) {}
+        }
+
         persistedUserViewModel.isScrumMaster().observe(viewLifecycleOwner) {
             teams_view.isVisible = false
             if(it.second) {

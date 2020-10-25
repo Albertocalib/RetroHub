@@ -13,6 +13,7 @@ import com.example.retrohub.extensions.toLowerCaseLocale
 import com.example.retrohub.model_view.PersonalAreaViewModel
 import com.example.retrohub.model_view.UserDataViewModel
 import com.example.retrohub.view.mobile.Retro
+import com.example.retrohub.view.mobile.RetroSubTypes
 import com.example.retrohub.view.mobile.User
 import kotlinx.android.synthetic.main.fragment_personal_area_view.*
 import org.koin.android.ext.android.inject
@@ -49,10 +50,11 @@ class PersonalAreaFragment : MainActivity.RetroHubFragment(R.layout.fragment_per
                 Toast.makeText(requireContext(),R.string.commingSoon,Toast.LENGTH_SHORT).show()
             }
         } else {
-            best_retro_name.text = list.groupingBy { it.subtype }
+            val subtype = list.groupingBy { it.subtype }
                 .eachCount()
                 .maxByOrNull { it.value }
-                ?.key
+                ?.key ?: ""
+            best_retro_name.text = getString(RetroSubTypes.valueOf(subtype).res)
         }
         loading_view.isVisible = false
     }

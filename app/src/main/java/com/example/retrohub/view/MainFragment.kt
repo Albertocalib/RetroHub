@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,23 +15,23 @@ import com.example.retrohub.extensions.getString
 import com.example.retrohub.extensions.inflate
 import com.example.retrohub.extensions.setVisibilityViews
 import com.example.retrohub.extensions.showDialog
-import com.example.retrohub.model_view.PersistedRetroViewModel
-import com.example.retrohub.model_view.PersistedViewModel
-import com.example.retrohub.model_view.RetroViewModel
-import com.example.retrohub.model_view.State
+import com.example.retrohub.model_view.*
 import com.example.retrohub.view.mobile.Retro
 import com.example.retrohub.view.mobile.RetroSubTypes
 import kotlinx.android.synthetic.main.fragment_empty_view.*
+import kotlinx.android.synthetic.main.fragment_empty_view.team_list
 import kotlinx.android.synthetic.main.view_retro_preview_card.view.*
 import org.koin.android.ext.android.inject
 
 
-class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view), PreviewRetroAdapter.ViewHolder.Action {
+class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view), PreviewRetroAdapter.ViewHolder.Action, AdapterTeam.ViewHolder.Action {
 
     private val persistedVM: PersistedViewModel by inject()
     private val persistedRetroViewModel: PersistedRetroViewModel by inject()
+    private val teamViewModel: TeamViewModel by inject()
     private lateinit var adapter: PreviewRetroAdapter
     private val retroVM: RetroViewModel by inject()
+    private lateinit var adapterTeams: AdapterTeam
     private lateinit var retros: List<Retro>
 
     override fun getToolbarTitle() = "RetroHub"
@@ -60,7 +61,22 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view),
             add_team_button.setOnClickListener { navigateAddTeam() }
             label_add_team.setOnClickListener { navigateAddTeam() }
             icon_add_team.setOnClickListener { navigateAddTeam() }
+            teamViewModel.getTeams(it.first)
             setVisibilityViews(it.second, listOf(add_team_button, label_add_team, icon_add_team))
+            teamViewModel.teams.observe(viewLifecycleOwner) {
+                if(it.isNullOrEmpty()) {
+                    team_list.isVisible = false
+                    return@observe
+                }
+                with(team_list) {
+                    layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                    adapter = AdapterTeam(it.map { it.name }.toTypedArray(),
+                        this@MainFragment
+                    ).also { this@MainFragment.adapterTeams = it }
+                    team_list.isVisible = true
+                }
+            }
         }
         floating_action_button.setOnClickListener {
             findNavController().navigate(R.id.selectionTypeFragment)
@@ -70,6 +86,8 @@ class MainFragment: MainActivity.RetroHubFragment(R.layout.fragment_empty_view),
             showDialog(R.string.title_help, R.string.message_help, R.string.accept_button) {}
         }
     }
+
+    override fun onItemSelected(item: Int) = Unit
 
     override fun onRetroSelected(index: Int) {
         persistedRetroViewModel.saveRetro(retros[index])
